@@ -1,12 +1,15 @@
 class ParametersScene extends Phaser.Scene {
     constructor() {
         super('ParametersScene');
-        this.lRiseRate = 8;
-        this.lDropRate = 12;
-        this.lPenaltyRate = 20;
-        this.rRiseRate = 8;
-        this.rDropRate = 12;
-        this.rPenaltyRate = 20;
+        this.lClimbRate;
+        this.lDropRate;
+        this.lPenaltyRate;
+        this.rClimbRate;
+        this.rDropRate;
+        this.rPenaltyRate;
+    }
+
+    init() {
     }
 
     preload() {
@@ -92,15 +95,15 @@ class ParametersScene extends Phaser.Scene {
             roundedRect2.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container2.on('pointerdown', function () {
-            this.scene.start("MenuScene", { l_bar_up_rate: this.lRiseRate, l_bar_down_rate: this.lDropRate, l_bar_penalty_rate: this.lPenaltyRate, r_bar_up_rate: this.rRiseRate, r_bar_down_rate: this.rDropRate, r_bar_penalty_rate: this.rPenaltyRate });
+            this.scene.start("MenuScene", { l_bar_up_rate: this.lClimbRate, l_bar_down_rate: this.lDropRate, l_bar_penalty_rate: this.lPenaltyRate, r_bar_up_rate: this.rClimbRate, r_bar_down_rate: this.rDropRate, r_bar_penalty_rate: this.rPenaltyRate });
         }, this);
     }
 
     saveValues() {
-        this.lRiseRate = this.formUtil.getTextAreaValue("l_bar_up_rate");
+        this.lClimbRate = this.formUtil.getTextAreaValue("l_bar_up_rate");
         this.lDropRate = this.formUtil.getTextAreaValue("l_bar_down_rate");
         this.lPenaltyRate = this.formUtil.getTextAreaValue("l_bar_penalty_rate");
-        this.rRiseRate = this.formUtil.getTextAreaValue("r_bar_up_rate");
+        this.rClimbRate = this.formUtil.getTextAreaValue("r_bar_up_rate");
         this.rDropRate = this.formUtil.getTextAreaValue("r_bar_down_rate");
         this.rPenaltyRate = this.formUtil.getTextAreaValue("r_bar_penalty_rate");
     }

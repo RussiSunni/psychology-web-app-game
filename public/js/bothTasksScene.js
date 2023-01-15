@@ -29,12 +29,12 @@ class BothTasksScene extends Phaser.Scene {
     }
 
     init(data) {
-        this.lRiseRate = parseFloat(data.l_bar_up_rate);
-        this.lDropRate = parseFloat(data.l_bar_down_rate);
-        this.lPenaltyRate = parseFloat(data.l_bar_penalty_rate);
-        this.rRiseRate = parseFloat(data.r_bar_up_rate);
-        this.rDropRate = parseFloat(data.r_bar_down_rate);
-        this.rPenaltyRate = parseFloat(data.r_bar_penalty_rate);
+        this.lRiseRate = game.config.lClimbRate;
+        this.lDropRate = game.config.lDropRate;
+        this.lPenaltyRate = game.config.lPenaltyRate;
+        this.rRiseRate = game.config.rClimbRate;
+        this.rDropRate = game.config.rDropRate;
+        this.rPenaltyRate = game.config.rPenaltyRate;
 
         this.gameOver = false;
         this.hasWon = false;

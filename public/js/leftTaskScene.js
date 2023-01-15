@@ -15,15 +15,15 @@ class LeftTaskScene extends Phaser.Scene {
         this.winTimer;
         this.winText;
         this.loseText;
-        this.lRiseRate; 
+        this.lRiseRate;
         this.lDropRate;
         this.lPenaltyRate;
     }
 
-    init(data) {
-        this.lRiseRate = parseFloat(data.l_bar_up_rate);
-        this.lDropRate = parseFloat(data.l_bar_down_rate);
-        this.lPenaltyRate = parseFloat(data.l_bar_penalty_rate);
+    init() {
+        this.lRiseRate = game.config.lClimbRate;
+        this.lDropRate = game.config.lDropRate;
+        this.lPenaltyRate = game.config.lPenaltyRate;
 
         this.gameOver = false;
         this.hasWon = false;

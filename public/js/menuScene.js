@@ -1,30 +1,11 @@
 class MenuScene extends Phaser.Scene {
     constructor() {
         super('MenuScene');
-        this.lRiseRate = 8;
-        this.lDropRate = 12;
-        this.lPenaltyRate = 20;
-        this.rRiseRate = 8;
-        this.rDropRate = 12;
-        this.rPenaltyRate = 20;
     }
-    init(data) {
-        if (data
-            && Object.keys(data).length === 0
-            && Object.getPrototypeOf(data) === Object.prototype) {
-        }
-        else {
-            this.lRiseRate = data.l_bar_up_rate;
-            this.lDropRate = data.l_bar_down_rate;
-            this.lPenaltyRate = data.l_bar_penalty_rate;
-            this.rRiseRate = data.r_bar_up_rate;
-            this.rDropRate = data.r_bar_down_rate;
-            this.rPenaltyRate = data.r_bar_penalty_rate;
-        }
+    init() {
     }
 
     preload() {
-
     }
     create() {
         // Menu button
@@ -66,7 +47,7 @@ class MenuScene extends Phaser.Scene {
             roundedRect2.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container2.on('pointerdown', function () {
-            this.scene.start("LeftTaskScene", { l_bar_up_rate: this.lRiseRate, l_bar_down_rate: this.lDropRate, l_bar_penalty_rate: this.lPenaltyRate });
+            this.scene.start("LeftTaskScene");
         }, this);
 
 
@@ -88,7 +69,7 @@ class MenuScene extends Phaser.Scene {
             roundedRect3.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container3.on('pointerdown', function () {
-            this.scene.start("RightTaskScene", { r_bar_up_rate: this.rRiseRate, r_bar_down_rate: this.rDropRate, r_bar_penalty_rate: this.rPenaltyRate });
+            this.scene.start("RightTaskScene");
         }, this);
 
 
@@ -110,7 +91,7 @@ class MenuScene extends Phaser.Scene {
             roundedRect4.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container4.on('pointerdown', function () {
-            this.scene.start("BothTasksScene", { l_bar_up_rate: this.lRiseRate, l_bar_down_rate: this.lDropRate, l_bar_penalty_rate: this.lPenaltyRate, r_bar_up_rate: this.rRiseRate, r_bar_down_rate: this.rDropRate, r_bar_penalty_rate: this.rPenaltyRate });
+            this.scene.start("BothTasksScene");
         }, this);
 
 
