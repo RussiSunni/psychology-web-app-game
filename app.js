@@ -29,8 +29,8 @@ Database Connection
 const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: 'C0gn1t1v3Psych0l0gy',
-	//password: 'password',
+	//password: 'C0gn1t1v3Psych0l0gy',
+	password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -95,3 +95,23 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+
+/**
+ * API Response
+ *
+ * @return response()
+ */
+function apiResponse(results) {
+	return JSON.stringify({ "status": 200, "error": null, "response": results });
+}
+
+
+/*------------------------------------------
+--------------------------------------------
+Server listening
+--------------------------------------------
+--------------------------------------------*/
+app.listen(3000, () => {
+	console.log('Server started on port 3000...');
+});
