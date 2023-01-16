@@ -31,7 +31,7 @@ const conn = mysql.createConnection({
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
 	password: 'password',
-	database: 'visual-kalsbeek'
+	database: 'visual_kalsbeek'
 });
 
 
