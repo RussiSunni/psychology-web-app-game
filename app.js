@@ -48,10 +48,27 @@ app.get('/', (req, res) => {
 	res.render('index');
 })
 
-/* GET parameters listing. */
+/* GET parameters. */
 app.get('/parameters', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
 	let sqlQuery = "SELECT * FROM parameters";
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+		res.json(results[0]);
+	});
+});
+
+/* UPDATE parameters. */
+app.put('/parameters', function (req, res, next) {
+	let sqlQuery = `
+	UPDATE parameters 
+	SET left_climb_rate = '` + parseInt(req.body.left_climb_rate) + `',
+	right_climb_rate = '` + parseInt(req.body.right_climb_rate) + `',
+	left_drop_amount = '` + parseInt(req.body.left_drop_amount) + `',
+	right_drop_amount = '` + parseInt(req.body.right_drop_amount) + `',
+	left_penalty_amount = '` + parseInt(req.body.left_penalty_amount) + `',
+	right_penalty_amount = '` + parseInt(req.body.right_penalty_amount) + `';`;
+
 	let query = conn.query(sqlQuery, (err, results) => {
 		if (err) throw err;
 		res.json(results);

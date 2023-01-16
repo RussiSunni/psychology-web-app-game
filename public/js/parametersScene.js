@@ -9,11 +9,9 @@ class ParametersScene extends Phaser.Scene {
         this.rPenaltyRate;
     }
 
-    init() {
-    }
+    init() { }
 
-    preload() {
-    }
+    preload() { }
 
     create() {
         this.formUtil = new FormUtil({
@@ -22,10 +20,8 @@ class ParametersScene extends Phaser.Scene {
             cols: 11
         });
 
-
         var lTitle = this.add.text(220, 25, "Left Side", { fontFamily: "Arial", fontSize: "48px", color: '#FFFFFF' });
         var rTitle = this.add.text(500, 25, "Right Side", { fontFamily: "Arial", fontSize: "48px", color: '#FFFFFF' });
-
 
         var text1 = this.add.text(20, 120, "climb rate", { fontFamily: "Arial", fontSize: "30px" });
         this.formUtil.showElement("r_bar_up_rate");
@@ -106,5 +102,25 @@ class ParametersScene extends Phaser.Scene {
         this.rClimbRate = this.formUtil.getTextAreaValue("r_bar_up_rate");
         this.rDropRate = this.formUtil.getTextAreaValue("r_bar_down_rate");
         this.rPenaltyRate = this.formUtil.getTextAreaValue("r_bar_penalty_rate");
+
+        // Save the parameters to the database.          
+        const requestOptions = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(
+                {
+                    left_climb_rate: this.lClimbRate,
+                    left_drop_amount: this.lDropRate,
+                    left_penalty_amount: this.lPenaltyRate,
+                    right_climb_rate: this.rClimbRate,
+                    right_drop_amount: this.rDropRate,
+                    right_penalty_amount: this.rPenaltyRate
+                })
+        };
+
+        fetch('/parameters', requestOptions)
+            .then(() => {
+
+            });
     }
 }
