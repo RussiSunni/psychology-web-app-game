@@ -29,8 +29,8 @@ Database Connection
 const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	//password: 'C0gn1t1v3Psych0l0gy',
-	password: 'password',
+	password: 'C0gn1t1v3Psych0l0gy',
+	//password: 'password',
 	database: 'visual_kalsbeek'
 });
 
