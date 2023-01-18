@@ -30,22 +30,22 @@
   </style>
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<!-- Phaser -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"
-  integrity="sha512-kg6fSrg6FkD9Ua02PzuA289KatVkTp6HdiFrSKwnz1bKBeKe5JG54rNeYZeghYO/I4ka49rb9H/9Ezcq9Se3iQ=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/main.js"></script>
-<script src="js/menuScene.js"></script>
-<script src="js/parametersScene.js"></script>
-<script src="js/leftTaskScene.js"></script>
-<script src="js/rightTaskScene.js"></script>
-<script src="js/bothTasksScene.js"></script>
-<!-- "util" folder code courtesy of William Clarkson / https://phasergames.com/. -->
-<script src="js/util/formUtil.js" type="text/javascript">
-</script>
-<script src="js/util/alignGrid.js" type="text/javascript">
-</script>
+
+  <!-- Phaser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"
+    integrity="sha512-kg6fSrg6FkD9Ua02PzuA289KatVkTp6HdiFrSKwnz1bKBeKe5JG54rNeYZeghYO/I4ka49rb9H/9Ezcq9Se3iQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/main.js"></script>
+  <script src="js/menuScene.js"></script>
+  <script src="js/parametersScene.js"></script>
+  <script src="js/leftTaskScene.js"></script>
+  <script src="js/rightTaskScene.js"></script>
+  <script src="js/bothTasksScene.js"></script>
+  <!-- "util" folder code courtesy of William Clarkson / https://phasergames.com/. -->
+  <script src="js/util/formUtil.js" type="text/javascript">
+  </script>
+  <script src="js/util/alignGrid.js" type="text/javascript">
+  </script>
 </head>
 
 <body>
@@ -55,7 +55,7 @@
   </button>
   <div class="sidebar sidebar-animate-right" style="width:200px;right:0; top: 43px" id="sidebar">
     <h4 class="pe-3 mt-2">Instructions</h4>
-    <p class="pe-3"><em>(Case doesn't matter)</em></p>
+    <!-- <p class="pe-3"><em>(Case doesn't matter)</em></p>
     <h5 class="mt-2">Left Task</h5>
     <ul>
       <li>High : w</li>
@@ -67,7 +67,9 @@
       <li>a : m</li>
       <li>b : ,</li>
       <li>c : .</li>
-    </ul>
+    </ul> -->
+    <div id="instructions"></div>
+    <a href="/instructions">edit instructions</a>
   </div>
   <!-- Simulation -->
   <div id='phaser-game'></div>
@@ -81,6 +83,15 @@
   <input style="display: none;" type="text" id="r_bar_penalty_rate" />
 
   <script>
+    // Load the instructions.
+    fetch('/instructions/show')
+      .then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        var instructions = document.getElementById('instructions');
+        instructions.innerHTML = data.instructions;
+      });
+
     // Hide the instructions sidebar if this is not the first time the user has visited the site.
     if (localStorage.getItem("hasSeenInstructions") == "true") {
       document.getElementById("sidebar").style.display = "none";

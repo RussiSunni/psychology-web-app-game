@@ -48,6 +48,7 @@ app.get('/', (req, res) => {
 	res.render('index');
 })
 
+/* Parameters. ---------------------------------------------------*/
 /* GET parameters. */
 app.get('/parameters', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
@@ -74,6 +75,30 @@ app.put('/parameters', function (req, res, next) {
 		res.json(results);
 	});
 });
+
+/* Instructions. ---------------------------------------------------*/
+/* GET instructions. */
+app.get('/instructions/show', function (req, res, next) {
+	res.setHeader('Content-Type', 'application/json');
+	let sqlQuery = "SELECT * FROM instructions";
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+		res.json(results[0]);
+	});
+});
+
+app.get('/instructions', function (req, res, next) {
+	res.render('edit-instructions');
+});
+
+app.put('/instructions/edit', function (req, res, next) {
+	let sqlQuery = "UPDATE instructions SET instructions='" + req.body.editordata + "'";
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+		res.end();
+	});
+});
+
 
 //app.use('/', indexRouter);
 //app.use('/parameters', parametersRouter);
