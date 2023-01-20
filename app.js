@@ -30,7 +30,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//password: 'password',
+	password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -78,6 +78,10 @@ app.put('/parameters', function (req, res, next) {
 
 /* Instructions. ---------------------------------------------------*/
 /* GET instructions. */
+app.get('/instructions', function (req, res, next) {
+	res.render('instructions');
+});
+
 app.get('/instructions/show', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
 	let sqlQuery = "SELECT * FROM instructions";
@@ -87,14 +91,37 @@ app.get('/instructions/show', function (req, res, next) {
 	});
 });
 
-app.get('/instructions', function (req, res, next) {
+app.get('/instructions/edit', function (req, res, next) {
 	res.render('edit-instructions');
 });
 
 app.put('/instructions/edit', function (req, res, next) {
-	let sqlQuery = "UPDATE instructions SET instructions='" + req.body.editordata + "'";
+	let sqlQuery = "UPDATE instructions SET cheat_sheet='" + req.body.editordata + "'";
 	let query = conn.query(sqlQuery, (err, results) => {
 		if (err) throw err;
+		res.end();
+	});
+});
+
+/* Login. ---------------------------------------------------*/
+app.get('/login', (req, res) => {
+	res.render('login');
+})
+
+app.post('/login-attempt', (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+
+	// Execute SQL query that'll select the account from the database based on the specified username and password.
+	let sqlQuery = "SELECT * FROM visual_kalsbeek.users WHERE visual_kalsbeek.users.username = '" + req.body.username + "' AND skill_tree.users.password = '" + req.body.password + "';";
+
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+
+		if (results.length > 0) {
+			res.redirect('/');
+		} else {
+			res.redirect('/login');
+		}
 		res.end();
 	});
 });

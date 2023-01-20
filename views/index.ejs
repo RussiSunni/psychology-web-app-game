@@ -9,12 +9,17 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    .instructions-btn {
+    /* .instructions-btn {
+      position: fixed;
+      right: 41px;
+    } */
+
+    .sidebar-btn {
       position: fixed;
       right: 0px;
     }
 
-    .sidebar {
+    /* .sidebar {
       height: 100%;
       width: 200px;
       background-color: #fff;
@@ -26,7 +31,7 @@
     .sidebar-animate-right {
       position: relative;
       animation: animateright 0.4s;
-    }
+    } */
   </style>
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -49,30 +54,49 @@
 </head>
 
 <body>
+
+  <div class="container-fluid">
+    <button class="navbar-toggler sidebar-btn" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"><img src="./icons/info-solid.svg" height="24"> </span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h4 class="pe-3 mt-2">Cheat Sheet</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div id="cheat-sheet"></div>
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link" href="/instructions">Full Instructions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/login">Log In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <a class="instructions-btn btn" href="/instructions" class="button">  
+    Full Instructions
+  </a>
+  <a class="instructions-btn btn" href="/instructions" class="button">
+    Log In
+  </a>
+  <button class="cheat-sheet-btn btn" onclick="ToggleSidebar()">  
+    Cheat Sheet
+  </button> -->
+
   <!-- Sidebar -->
-  <button class="instructions-btn btn" onclick="ToggleSidebar()">
-    <img src="./icons/info-solid.svg" height="24">
-  </button>
-  <div class="sidebar sidebar-animate-right" style="width:200px;right:0; top: 43px" id="sidebar">
-    <h4 class="pe-3 mt-2">Instructions</h4>
-    <!-- <p class="pe-3"><em>(Case doesn't matter)</em></p>
-    <h5 class="mt-2">Left Task</h5>
-    <ul>
-      <li>High : w</li>
-      <li>Medium : s</li>
-      <li>Low : x</li>
-    </ul>
-    <h5 class="mt-2">Right Task</h5>
-    <ul>
-      <li>a : m</li>
-      <li>b : ,</li>
-      <li>c : .</li>
-    </ul> -->
-    <div id="instructions"></div>
-    <a href="/instructions">edit instructions</a>
+  <!-- <div class="sidebar sidebar-animate-right" style="width:200px;right:0; top: 43px" id="sidebar"> -->
+
   </div>
   <!-- Simulation -->
   <div id='phaser-game'></div>
+
 
   <!-- Parameters Form -->
   <input style="display: none;" type="text" id="l_bar_up_rate" />
@@ -83,13 +107,13 @@
   <input style="display: none;" type="text" id="r_bar_penalty_rate" />
 
   <script>
-    // Load the instructions.
+    // Load the cheat sheet.
     fetch('/instructions/show')
       .then(function (response) {
         return response.json();
       }).then(function (data) {
-        var instructions = document.getElementById('instructions');
-        instructions.innerHTML = data.instructions;
+        var cheatSheet = document.getElementById('cheat-sheet');
+        cheatSheet.innerHTML = data.cheat_sheet;
       });
 
     // Hide the instructions sidebar if this is not the first time the user has visited the site.
