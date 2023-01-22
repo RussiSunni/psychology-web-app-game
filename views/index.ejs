@@ -9,11 +9,6 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    .instructions-btn {
-      position: fixed;
-      right: 41px;
-    }
-
     .sidebar-btn {
       position: fixed;
       right: 0px;
@@ -56,7 +51,7 @@
 <body>
 
   <!-- Sidebar -->
-  <button class="instructions-btn btn" onclick="ToggleSidebar()">
+  <button class="sidebar-btn btn" onclick="ToggleSidebar()">
     <img src="./icons/info-solid.svg" height="24">
   </button>
   <div class="sidebar sidebar-animate-right" style="width:200px;right:0; top: 43px" id="sidebar">
@@ -74,6 +69,8 @@
       <li>b : ,</li>
       <li>c : .</li>
     </ul>
+    <p>&nbsp;</p>
+    <a class="link-dark" href="/instructions-1"><em>Read full instructions</em></a>
   </div>
 
   <!-- Simulation -->
