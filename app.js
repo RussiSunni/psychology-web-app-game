@@ -78,8 +78,16 @@ app.put('/parameters', function (req, res, next) {
 
 /* Instructions. ---------------------------------------------------*/
 /* GET instructions. */
-app.get('/instructions', function (req, res, next) {
-	res.render('instructions');
+app.get('/instructions-1', function (req, res, next) {
+	res.render('instructions-1');
+});
+
+app.get('/instructions-2', function (req, res, next) {
+	res.render('instructions-2');
+});
+
+app.get('/instructions-3', function (req, res, next) {
+	res.render('instructions-3');
 });
 
 app.get('/instructions/show', function (req, res, next) {
@@ -164,6 +172,6 @@ function apiResponse(results) {
 Server listening
 --------------------------------------------
 --------------------------------------------*/
-app.listen(3000, () => {
-	console.log('Server started on port 3000...');
+app.listen(80, () => {
+	console.log('Server started on port 80...');
 });
