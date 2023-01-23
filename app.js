@@ -30,7 +30,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//password: 'password',
+	//	password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -129,13 +129,38 @@ app.get('/instructions-3/edit', function (req, res, next) {
 	res.render('edit-instructions-3');
 });
 
-// app.put('/instructions/edit', function (req, res, next) {
-// 	let sqlQuery = "UPDATE instructions SET cheat_sheet='" + req.body.editordata + "'";
-// 	let query = conn.query(sqlQuery, (err, results) => {
-// 		if (err) throw err;
-// 		res.end();
-// 	});
-// });
+app.put('/instructions-1/edit', function (req, res, next) {
+	// Deal with single quotes
+	var escapedResult = req.body.editordata.replace(/'/g, "\\'");
+
+	let sqlQuery = "UPDATE instructions SET left_task='" + escapedResult + "'";
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+		res.end();
+	});
+});
+
+app.put('/instructions-2/edit', function (req, res, next) {
+	// Deal with single quotes
+	var escapedResult = req.body.editordata.replace(/'/g, "\\'");
+
+	let sqlQuery = "UPDATE instructions SET right_task='" + escapedResult + "'";
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+		res.end();
+	});
+});
+
+app.put('/instructions-3/edit', function (req, res, next) {
+	// Deal with single quotes
+	var escapedResult = req.body.editordata.replace(/'/g, "\\'");
+
+	let sqlQuery = "UPDATE instructions SET both_tasks='" + escapedResult + "'";
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+		res.end();
+	});
+});
 
 /* Login. ---------------------------------------------------*/
 app.get('/login', (req, res) => {
