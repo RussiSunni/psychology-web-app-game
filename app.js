@@ -121,6 +121,14 @@ app.get('/instructions-1/edit', function (req, res, next) {
 	res.render('edit-instructions-1');
 });
 
+app.get('/instructions-2/edit', function (req, res, next) {
+	res.render('edit-instructions-2');
+});
+
+app.get('/instructions-3/edit', function (req, res, next) {
+	res.render('edit-instructions-3');
+});
+
 // app.put('/instructions/edit', function (req, res, next) {
 // 	let sqlQuery = "UPDATE instructions SET cheat_sheet='" + req.body.editordata + "'";
 // 	let query = conn.query(sqlQuery, (err, results) => {
