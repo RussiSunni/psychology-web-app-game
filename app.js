@@ -90,26 +90,44 @@ app.get('/instructions-3', function (req, res, next) {
 	res.render('instructions-3');
 });
 
-app.get('/instructions/show', function (req, res, next) {
+app.get('/instructions-1/show', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
-	let sqlQuery = "SELECT * FROM instructions";
+	let sqlQuery = "SELECT left_task FROM instructions";
 	let query = conn.query(sqlQuery, (err, results) => {
 		if (err) throw err;
 		res.json(results[0]);
 	});
 });
 
-app.get('/instructions/edit', function (req, res, next) {
-	res.render('edit-instructions');
-});
-
-app.put('/instructions/edit', function (req, res, next) {
-	let sqlQuery = "UPDATE instructions SET cheat_sheet='" + req.body.editordata + "'";
+app.get('/instructions-2/show', function (req, res, next) {
+	res.setHeader('Content-Type', 'application/json');
+	let sqlQuery = "SELECT right_task FROM instructions";
 	let query = conn.query(sqlQuery, (err, results) => {
 		if (err) throw err;
-		res.end();
+		res.json(results[0]);
 	});
 });
+
+app.get('/instructions-3/show', function (req, res, next) {
+	res.setHeader('Content-Type', 'application/json');
+	let sqlQuery = "SELECT both_tasks FROM instructions";
+	let query = conn.query(sqlQuery, (err, results) => {
+		if (err) throw err;
+		res.json(results[0]);
+	});
+});
+
+app.get('/instructions-1/edit', function (req, res, next) {
+	res.render('edit-instructions-1');
+});
+
+// app.put('/instructions/edit', function (req, res, next) {
+// 	let sqlQuery = "UPDATE instructions SET cheat_sheet='" + req.body.editordata + "'";
+// 	let query = conn.query(sqlQuery, (err, results) => {
+// 		if (err) throw err;
+// 		res.end();
+// 	});
+// });
 
 /* Login. ---------------------------------------------------*/
 app.get('/login', (req, res) => {

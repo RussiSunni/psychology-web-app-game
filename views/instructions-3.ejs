@@ -34,18 +34,16 @@
     <div class="container">
 
         <h1>Both Tasks</h1>
-        <p>Finally you are going to try the “Both Task”. Here you have both the Left Task and the Right Task going
-            at
-            the same time. Your job is to keep both bars as low as possible.</p>
+        <div id="instructions"></div>
 
     </div>
     <script>
         // Load the instructions.
-        fetch('/instructions/show')
+        fetch('/instructions-3/show')
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
-
+                document.getElementById("instructions").innerHTML = data.both_tasks;
 
             });
     </script>

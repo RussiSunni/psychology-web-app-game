@@ -19,6 +19,11 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="btn btn-info" role="button" href="/instructions-1/edit">Edit</a>
+                </li>
+            </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="btn btn-info" role="button" href="/instructions-2">Next</a>
@@ -29,37 +34,16 @@
     <div class="container">
 
         <h1>Left Task</h1>
-        <p>You are going to start with what we call the “Left Task”.</p>
-
-        <p>Here, you will be responding with your left hand. There are three buttons on the keyboard you can press
-            when
-            you
-            hear a sound. If you hear a high-pitched voice say the word hi you will press the W key. If you hear a
-            medium
-            pitch
-            sound say the word medium you will press the S key. And if you hear a low pitch sounds say the word low
-            you
-            will
-            press the X key.</p>
-
-        <p>Please keep the index, middle and ring fingers of your left hand rested on the three keys.</p>
-
-        <p>Your goal is to respond at a rate that keeps the blue bar on the left side of the screen as low as
-            possible.
-            It's
-            always Rising unless you respond accurately and promptly enough. Your goal is to drive the bar as low as
-            possible.</p>
-
+        <div id="instructions"></div>
 
     </div>
     <script>
         // Load the instructions.
-        fetch('/instructions/show')
+        fetch('/instructions-1/show')
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
-
-
+                document.getElementById("instructions").innerHTML = data.left_task;
             });
     </script>
 </body>

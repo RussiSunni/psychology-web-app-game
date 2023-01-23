@@ -34,31 +34,16 @@
     <div class="container">
 
         <h1>Right Task</h1>
-        <p>Next you are going to try what we call the “Right Task”.</p>
-
-        <p>Here, you will be responding with your right hand. There are three buttons on the keyboard you can press
-            when
-            you see a letter flash on the screen. If you see an A you will press the comma key. If you see a B you
-            will
-            press the period key. And if you see a C you will press the slash key.</p>
-
-        <p>Please keep the index, middle and ring fingers of your right hand rested on the three keys.</p>
-
-        <p>Your goal is to respond at a rate that keeps the red bar on the right side of the screen as low as
-            possible.
-            It's always Rising unless you respond accurately and promptly enough. Your goal is to drive the bar as
-            low
-            as possible.</p>
+        <div id="instructions"></div>
 
     </div>
     <script>
         // Load the instructions.
-        fetch('/instructions/show')
+        fetch('/instructions-2/show')
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
-
-
+                document.getElementById("instructions").innerHTML = data.right_task;
             });
     </script>
 </body>
