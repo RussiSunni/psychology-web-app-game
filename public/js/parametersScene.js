@@ -40,7 +40,7 @@ class ParametersScene extends Phaser.Scene {
         this.formUtil.scaleToGameW("r_bar_penalty_rate", .1);
         this.formUtil.placeElementAt(52, 'r_bar_penalty_rate', true);
 
-        var text4 = this.add.text(20, 285, "delay", { fontFamily: "Arial", fontSize: "30px" });
+        var text4 = this.add.text(20, 285, "delay (ms)", { fontFamily: "Arial", fontSize: "30px" });
         this.formUtil.showElement("r_bar_delay_amount");
         this.formUtil.scaleToGameW("r_bar_delay_amount", .1);
         this.formUtil.placeElementAt(63, 'r_bar_delay_amount', true);
