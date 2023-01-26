@@ -18,12 +18,14 @@ class RightTaskScene extends Phaser.Scene {
         this.rRiseRate;
         this.rDropRate;
         this.rPenaltyRate;
+        this.rDelayAmount;
     }
 
     init() {
         this.rRiseRate = game.config.rClimbRate;
         this.rDropRate = game.config.rDropRate;
         this.rPenaltyRate = game.config.rPenaltyRate;
+        this.rDelayAmount = game.config.rDelayAmount;
 
         this.gameOver = false;
         this.hasWon = false;
@@ -33,6 +35,7 @@ class RightTaskScene extends Phaser.Scene {
         this.load.audio("lose", ["audio/glass-smash.wav"]);
     }
     create() {
+
         this.startTimedEvent = this.time.addEvent({ delay: 2000, callback: this.startEvent, callbackScope: this, loop: false });
 
         // Bar.
@@ -84,7 +87,7 @@ class RightTaskScene extends Phaser.Scene {
             if (Phaser.Input.Keyboard.JustDown(this.MKey)) {
                 if (this.currentLetter == "a") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
-                    this.changeLetterTimer = this.time.delayedCall(25, this.changeLetter, [], this);
+                    this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
                     if (this.rightSideRect.y - this.rPenaltyRate > -400)
@@ -96,7 +99,7 @@ class RightTaskScene extends Phaser.Scene {
             else if (Phaser.Input.Keyboard.JustDown(this.COMMAKey)) {
                 if (this.currentLetter == "b") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
-                    this.changeLetterTimer = this.time.delayedCall(25, this.changeLetter, [], this);
+                    this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
                     if (this.rightSideRect.y - this.rPenaltyRate > -400)
@@ -108,7 +111,7 @@ class RightTaskScene extends Phaser.Scene {
             else if (Phaser.Input.Keyboard.JustDown(this.PERIODKey)) {
                 if (this.currentLetter == "c") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
-                    this.changeLetterTimer = this.time.delayedCall(25, this.changeLetter, [], this);
+                    this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
                     if (this.rightSideRect.y - this.rPenaltyRate > -400)

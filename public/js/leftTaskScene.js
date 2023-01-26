@@ -13,17 +13,19 @@ class LeftTaskScene extends Phaser.Scene {
         this.gameOverAudio;
         this.gameOverAudioIteration = 0;
         this.winTimer;
-        this.winText;
+        this.winText; 
         this.loseText;
         this.lRiseRate;
         this.lDropRate;
         this.lPenaltyRate;
+        this.lDelayAmount;
     }
 
     init() {
         this.lRiseRate = game.config.lClimbRate;
         this.lDropRate = game.config.lDropRate;
         this.lPenaltyRate = game.config.lPenaltyRate;
+        this.lDelayAmount = game.config.lDelayAmount;
 
         this.gameOver = false;
         this.hasWon = false;
@@ -95,7 +97,7 @@ class LeftTaskScene extends Phaser.Scene {
             if (Phaser.Input.Keyboard.JustDown(this.WKey)) {
                 if (this.currentTone == this.toneArray[0]) {
                     this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.changeToneTimer = this.time.delayedCall(25, this.changeTone, [], this);
+                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
                 }
                 else {
                     if (this.leftSideRect.y - this.lPenaltyRate > -400)
@@ -107,7 +109,7 @@ class LeftTaskScene extends Phaser.Scene {
             else if (Phaser.Input.Keyboard.JustDown(this.SKey)) {
                 if (this.currentTone == this.toneArray[1]) {
                     this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.changeToneTimer = this.time.delayedCall(25, this.changeTone, [], this);
+                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
                 }
                 else {
                     if (this.leftSideRect.y - this.lPenaltyRate > -400)
@@ -119,7 +121,7 @@ class LeftTaskScene extends Phaser.Scene {
             else if (Phaser.Input.Keyboard.JustDown(this.XKey)) {
                 if (this.currentTone == this.toneArray[2]) {
                     this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.changeToneTimer = this.time.delayedCall(25, this.changeTone, [], this);
+                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
                 }
                 else {
                     if (this.leftSideRect.y - this.lPenaltyRate > -400)
