@@ -30,7 +30,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//	password: 'password',
+	//password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -67,8 +67,10 @@ app.put('/parameters', function (req, res, next) {
 	right_climb_rate = '` + parseInt(req.body.right_climb_rate) + `',
 	left_drop_amount = '` + parseInt(req.body.left_drop_amount) + `',
 	right_drop_amount = '` + parseInt(req.body.right_drop_amount) + `',
+	left_delay_amount = '` + parseInt(req.body.left_delay_amount) + `',
+	right_delay_amount = '` + parseInt(req.body.right_delay_amount) + `',
 	left_penalty_amount = '` + parseInt(req.body.left_penalty_amount) + `',
-	right_penalty_amount = '` + parseInt(req.body.right_penalty_amount) + `';`;
+	right_penalty_amount = '` + parseInt(req.body.right_penalty_amount) + `'; `;
 
 	let query = conn.query(sqlQuery, (err, results) => {
 		if (err) throw err;

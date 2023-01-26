@@ -21,16 +21,20 @@ window.onload = function () {
             document.getElementById("l_bar_up_rate").value = data.left_climb_rate;
             document.getElementById("l_bar_down_rate").value = data.left_drop_amount;
             document.getElementById("l_bar_penalty_rate").value = data.left_penalty_amount;
+            document.getElementById("l_bar_delay_amount").value = data.left_delay_amount;
             document.getElementById("r_bar_up_rate").value = data.right_climb_rate;
             document.getElementById("r_bar_down_rate").value = data.right_drop_amount;
             document.getElementById("r_bar_penalty_rate").value = data.right_penalty_amount;
+            document.getElementById("r_bar_delay_amount").value = data.right_delay_amount;
 
             // Load the data into Phaser.
             game.config.lClimbRate = data.left_climb_rate;
             game.config.lDropRate = data.left_drop_amount;
             game.config.lPenaltyRate = data.left_penalty_amount;
+            game.config.lDelayAmount = data.left_delay_amount;
             game.config.rClimbRate = data.right_climb_rate;
             game.config.rDropRate = data.right_drop_amount;
             game.config.rPenaltyRate = data.right_penalty_amount;
+            game.config.rDelayAmount = data.right_delay_amount;
         });
 }

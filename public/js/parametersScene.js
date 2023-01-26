@@ -4,9 +4,11 @@ class ParametersScene extends Phaser.Scene {
         this.lClimbRate;
         this.lDropRate;
         this.lPenaltyRate;
+        this.lDelayAmount;
         this.rClimbRate;
         this.rDropRate;
         this.rPenaltyRate;
+        this.rDelayAmount;
     }
 
     init() { }
@@ -38,6 +40,11 @@ class ParametersScene extends Phaser.Scene {
         this.formUtil.scaleToGameW("r_bar_penalty_rate", .1);
         this.formUtil.placeElementAt(52, 'r_bar_penalty_rate', true);
 
+        var text4 = this.add.text(20, 285, "delay", { fontFamily: "Arial", fontSize: "30px" });
+        this.formUtil.showElement("r_bar_delay_amount");
+        this.formUtil.scaleToGameW("r_bar_delay_amount", .1);
+        this.formUtil.placeElementAt(63, 'r_bar_delay_amount', true);
+
         this.formUtil.showElement("l_bar_up_rate");
         this.formUtil.scaleToGameW("l_bar_up_rate", .1);
         this.formUtil.placeElementAt(26, 'l_bar_up_rate', true);
@@ -49,6 +56,10 @@ class ParametersScene extends Phaser.Scene {
         this.formUtil.showElement("l_bar_penalty_rate");
         this.formUtil.scaleToGameW("l_bar_penalty_rate", .1);
         this.formUtil.placeElementAt(48, 'l_bar_penalty_rate', true);
+
+        this.formUtil.showElement("l_bar_delay_amount");
+        this.formUtil.scaleToGameW("l_bar_delay_amount", .1);
+        this.formUtil.placeElementAt(59, 'l_bar_delay_amount', true);
 
 
         // Save button
@@ -99,9 +110,11 @@ class ParametersScene extends Phaser.Scene {
         this.lClimbRate = this.formUtil.getTextAreaValue("l_bar_up_rate");
         this.lDropRate = this.formUtil.getTextAreaValue("l_bar_down_rate");
         this.lPenaltyRate = this.formUtil.getTextAreaValue("l_bar_penalty_rate");
+        this.lDelayAmount = this.formUtil.getTextAreaValue("l_bar_delay_amount");
         this.rClimbRate = this.formUtil.getTextAreaValue("r_bar_up_rate");
         this.rDropRate = this.formUtil.getTextAreaValue("r_bar_down_rate");
         this.rPenaltyRate = this.formUtil.getTextAreaValue("r_bar_penalty_rate");
+        this.rDelayAmount = this.formUtil.getTextAreaValue("r_bar_delay_amount");
 
         // Save the parameters to the database.          
         const requestOptions = {
@@ -112,9 +125,11 @@ class ParametersScene extends Phaser.Scene {
                     left_climb_rate: this.lClimbRate,
                     left_drop_amount: this.lDropRate,
                     left_penalty_amount: this.lPenaltyRate,
+                    left_delay_amount: this.lDelayAmount,
                     right_climb_rate: this.rClimbRate,
                     right_drop_amount: this.rDropRate,
-                    right_penalty_amount: this.rPenaltyRate
+                    right_penalty_amount: this.rPenaltyRate,
+                    right_delay_amount: this.rDelayAmount
                 })
         };
 
