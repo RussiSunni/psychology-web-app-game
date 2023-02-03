@@ -133,16 +133,6 @@ class ParametersScene extends Phaser.Scene {
                 })
         };
 
-        // Update the params.
-        // game.config.lClimbRate = this.lClimbRate;
-        // game.config.lDropRate = this.lDropRate;
-        // game.config.lPenaltyRate = this.lPenaltyRate;
-        // game.config.lDelayAmount = this.lDelayAmount
-        // game.config.rClimbRate = this.rClimbRate;
-        // game.config.rDropRate = this.rDropRate;
-        // game.config.rPenaltyRate = this.rPenaltyRate;
-        // game.config.rDelayAmount = this.rDelayAmount;
-
 
         fetch('/parameters', requestOptions)
             .then(() => {
