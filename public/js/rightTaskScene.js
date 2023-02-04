@@ -19,6 +19,7 @@ class RightTaskScene extends Phaser.Scene {
         this.rDropRate;
         this.rPenaltyRate;
         this.rDelayAmount;
+        this.isDelay; 
     }
 
     init() {
@@ -29,6 +30,7 @@ class RightTaskScene extends Phaser.Scene {
 
         this.gameOver = false;
         this.hasWon = false;
+        this.isDelay = false;
     }
 
     preload() {
@@ -82,11 +84,14 @@ class RightTaskScene extends Phaser.Scene {
     }
 
     update() {
+        console.log(this.isDelay)
+
         // Test for Correct Key.
-        if (this.hasWon == false && this.gameOver == false) {
+        if (this.hasWon == false && this.gameOver == false && this.isDelay == false) {
             if (Phaser.Input.Keyboard.JustDown(this.MKey)) {
                 if (this.currentLetter == "a") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
+                    this.isDelay = true;
                     this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
@@ -99,6 +104,7 @@ class RightTaskScene extends Phaser.Scene {
             else if (Phaser.Input.Keyboard.JustDown(this.COMMAKey)) {
                 if (this.currentLetter == "b") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
+                    this.isDelay = true;
                     this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
@@ -111,6 +117,7 @@ class RightTaskScene extends Phaser.Scene {
             else if (Phaser.Input.Keyboard.JustDown(this.PERIODKey)) {
                 if (this.currentLetter == "c") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
+                    this.isDelay = true;
                     this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
@@ -137,6 +144,8 @@ class RightTaskScene extends Phaser.Scene {
                 this.letterText.text = tempLetter;
                 this.currentLetter = tempLetter;
             }
+
+            this.isDelay = false;
         }
     }
 

@@ -28,6 +28,8 @@ class BothTasksScene extends Phaser.Scene {
         this.rPenaltyRate;
         this.lDelayAmount;
         this.rDelayAmount;
+        this.isLeftDelay;
+        this.isRightDelay;
     }
 
     init(data) {
@@ -42,6 +44,8 @@ class BothTasksScene extends Phaser.Scene {
 
         this.gameOver = false;
         this.hasWon = false;
+        this.isLeftDelay = false;
+        this.isRightDelay = false;
     }
 
     preload() {
@@ -118,77 +122,89 @@ class BothTasksScene extends Phaser.Scene {
     update() {
         // Test for Correct Key.
         if (this.hasWon == false && this.gameOver == false) {
-            if (Phaser.Input.Keyboard.JustDown(this.WKey)) {
-                if (this.currentTone == this.toneArray[0]) {
-                    this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
+
+            if (this.isLeftDelay == false) {
+                if (Phaser.Input.Keyboard.JustDown(this.WKey)) {
+                    if (this.currentTone == this.toneArray[0]) {
+                        this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
+                        this.isLeftDelay = true;
+                        this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
+                    }
+                    else {
+                        if (this.leftSideRect.y - this.lPenaltyRate > -400)
+                            this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
+                        else
+                            this.leftSideRect.y = -400
+                    }
                 }
-                else {
-                    if (this.leftSideRect.y - this.lPenaltyRate > -400)
-                        this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
-                    else
-                        this.leftSideRect.y = -400
+                else if (Phaser.Input.Keyboard.JustDown(this.SKey)) {
+                    if (this.currentTone == this.toneArray[1]) {
+                        this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
+                        this.isLeftDelay = true;
+                        this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
+                    }
+                    else {
+                        if (this.leftSideRect.y - this.lPenaltyRate > -400)
+                            this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
+                        else
+                            this.leftSideRect.y = -400
+                    }
                 }
-            }
-            else if (Phaser.Input.Keyboard.JustDown(this.SKey)) {
-                if (this.currentTone == this.toneArray[1]) {
-                    this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
-                }
-                else {
-                    if (this.leftSideRect.y - this.lPenaltyRate > -400)
-                        this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
-                    else
-                        this.leftSideRect.y = -400
-                }
-            }
-            else if (Phaser.Input.Keyboard.JustDown(this.XKey)) {
-                if (this.currentTone == this.toneArray[2]) {
-                    this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
-                }
-                else {
-                    if (this.leftSideRect.y - this.lPenaltyRate > -400)
-                        this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
-                    else
-                        this.leftSideRect.y = -400
+                else if (Phaser.Input.Keyboard.JustDown(this.XKey)) {
+                    if (this.currentTone == this.toneArray[2]) {
+                        this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
+                        this.isLeftDelay = true;
+                        this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
+                    }
+                    else {
+                        if (this.leftSideRect.y - this.lPenaltyRate > -400)
+                            this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
+                        else
+                            this.leftSideRect.y = -400
+                    }
                 }
             }
 
-            if (Phaser.Input.Keyboard.JustDown(this.MKey)) {
-                if (this.currentLetter == "a") {
-                    this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
-                    this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
+            if (this.isRightDelay == false) {
+
+                if (Phaser.Input.Keyboard.JustDown(this.MKey)) {
+                    if (this.currentLetter == "a") {
+                        this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
+                        this.isRightDelay = true;
+                        this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
+                    }
+                    else {
+                        if (this.rightSideRect.y - this.rPenaltyRate > -400)
+                            this.rightSideRect.y = this.rightSideRect.y - this.rPenaltyRate;
+                        else
+                            this.rightSideRect.y = -400
+                    }
                 }
-                else {
-                    if (this.rightSideRect.y - this.rPenaltyRate > -400)
-                        this.rightSideRect.y = this.rightSideRect.y - this.rPenaltyRate;
-                    else
-                        this.rightSideRect.y = -400
+                else if (Phaser.Input.Keyboard.JustDown(this.COMMAKey)) {
+                    if (this.currentLetter == "b") {
+                        this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
+                        this.isRightDelay = true;
+                        this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
+                    }
+                    else {
+                        if (this.rightSideRect.y - this.rPenaltyRate > -400)
+                            this.rightSideRect.y = this.rightSideRect.y - this.rPenaltyRate;
+                        else
+                            this.rightSideRect.y = -400
+                    }
                 }
-            }
-            else if (Phaser.Input.Keyboard.JustDown(this.COMMAKey)) {
-                if (this.currentLetter == "b") {
-                    this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
-                    this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
-                }
-                else {
-                    if (this.rightSideRect.y - this.rPenaltyRate > -400)
-                        this.rightSideRect.y = this.rightSideRect.y - this.rPenaltyRate;
-                    else
-                        this.rightSideRect.y = -400
-                }
-            }
-            else if (Phaser.Input.Keyboard.JustDown(this.PERIODKey)) {
-                if (this.currentLetter == "c") {
-                    this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
-                    this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
-                }
-                else {
-                    if (this.rightSideRect.y - this.rPenaltyRate > -400)
-                        this.rightSideRect.y = this.rightSideRect.y - this.rPenaltyRate;
-                    else
-                        this.rightSideRect.y = -400
+                else if (Phaser.Input.Keyboard.JustDown(this.PERIODKey)) {
+                    if (this.currentLetter == "c") {
+                        this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
+                        this.isRightDelay = true;
+                        this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
+                    }
+                    else {
+                        if (this.rightSideRect.y - this.rPenaltyRate > -400)
+                            this.rightSideRect.y = this.rightSideRect.y - this.rPenaltyRate;
+                        else
+                            this.rightSideRect.y = -400
+                    }
                 }
             }
         }
@@ -205,6 +221,8 @@ class BothTasksScene extends Phaser.Scene {
         if (this.gameOver == false && this.hasWon == false) {
             this.currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
             this.currentTone.play();
+
+            this.isLeftDelay = false;
         }
     }
 
@@ -218,6 +236,8 @@ class BothTasksScene extends Phaser.Scene {
                 this.letterText.text = tempLetter;
                 this.currentLetter = tempLetter;
             }
+
+            this.isRightDelay = false;
         }
     }
 
