@@ -19,7 +19,7 @@ class RightTaskScene extends Phaser.Scene {
         this.rDropRate;
         this.rPenaltyRate;
         this.rDelayAmount;
-        this.isDelay; 
+        this.isDelay;
     }
 
     init() {
@@ -84,14 +84,13 @@ class RightTaskScene extends Phaser.Scene {
     }
 
     update() {
-        console.log(this.isDelay)
-
         // Test for Correct Key.
         if (this.hasWon == false && this.gameOver == false && this.isDelay == false) {
             if (Phaser.Input.Keyboard.JustDown(this.MKey)) {
                 if (this.currentLetter == "a") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
                     this.isDelay = true;
+                    this.letterText.text = "";
                     this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
@@ -105,6 +104,7 @@ class RightTaskScene extends Phaser.Scene {
                 if (this.currentLetter == "b") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
                     this.isDelay = true;
+                    this.letterText.text = "";
                     this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {
@@ -118,6 +118,7 @@ class RightTaskScene extends Phaser.Scene {
                 if (this.currentLetter == "c") {
                     this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
                     this.isDelay = true;
+                    this.letterText.text = "";
                     this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                 }
                 else {

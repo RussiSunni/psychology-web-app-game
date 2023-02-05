@@ -171,6 +171,7 @@ class BothTasksScene extends Phaser.Scene {
                     if (this.currentLetter == "a") {
                         this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
                         this.isRightDelay = true;
+                        this.letterText.text = "";
                         this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                     }
                     else {
@@ -184,6 +185,7 @@ class BothTasksScene extends Phaser.Scene {
                     if (this.currentLetter == "b") {
                         this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
                         this.isRightDelay = true;
+                        this.letterText.text = "";
                         this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                     }
                     else {
@@ -197,6 +199,7 @@ class BothTasksScene extends Phaser.Scene {
                     if (this.currentLetter == "c") {
                         this.rightSideRect.y = this.rightSideRect.y + this.rDropRate;
                         this.isRightDelay = true;
+                        this.letterText.text = "";
                         this.changeLetterTimer = this.time.delayedCall(this.rDelayAmount, this.changeLetter, [], this);
                     }
                     else {
