@@ -256,6 +256,9 @@ class BothTasksScene extends Phaser.Scene {
                 this.container1.alpha = 1;
                 this.container1.setInteractive()
                 this.loseText.alpha = 1;
+
+                // Save game data.
+                this.saveGameData(false);
             }
         }
     }
@@ -272,6 +275,9 @@ class BothTasksScene extends Phaser.Scene {
                 this.container1.alpha = 1;
                 this.container1.setInteractive()
                 this.loseText.alpha = 1;
+
+                // Save game data.
+                this.saveGameData(false);
             }
         }
     }
@@ -284,6 +290,9 @@ class BothTasksScene extends Phaser.Scene {
             this.container1.alpha = 1;
             this.container1.setInteractive()
         }
+
+        // Save game data.
+        this.saveGameData(true);
     }
 
     startEvent() {
@@ -298,5 +307,31 @@ class BothTasksScene extends Phaser.Scene {
         this.rightBarTimedEvent = this.time.addEvent({ delay: 50, callback: this.raiseRightBar, callbackScope: this, loop: true });
         this.letterText = this.add.text(350, 200, this.letterTextArray[Math.floor(Math.random() * this.letterTextArray.length)], { fontFamily: "Arial", fontSize: "168px" });
         this.currentLetter = this.letterText.text;
+    }
+
+    saveGameData(didWin) {
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(
+                {
+                    task: "both",
+                    did_win: didWin,
+                    left_climb_rate: this.lRiseRate,
+                    left_drop_amount: this.lDropRate,
+                    left_penalty_amount: this.lPenaltyRate,
+                    left_delay_amount: this.lDelayAmount,
+                    right_climb_rate: this.rRiseRate,
+                    right_drop_amount: this.rDropRate,
+                    right_penalty_amount: this.rPenaltyRate,
+                    right_delay_amount: this.rDelayAmount
+                })
+        };
+
+
+        fetch('/saveGameData', requestOptions)
+            .then(() => {
+
+            });
     }
 }
