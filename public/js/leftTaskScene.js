@@ -18,7 +18,11 @@ class LeftTaskScene extends Phaser.Scene {
         this.lRiseRate;
         this.lDropRate;
         this.lPenaltyRate;
+        this.rRiseRate;
+        this.rDropRate;
+        this.rPenaltyRate;
         this.lDelayAmount;
+        this.rDelayAmount;
         this.isDelay;
     }
 
@@ -27,6 +31,10 @@ class LeftTaskScene extends Phaser.Scene {
         this.lDropRate = game.config.lDropRate;
         this.lPenaltyRate = game.config.lPenaltyRate;
         this.lDelayAmount = game.config.lDelayAmount;
+        this.rRiseRate = game.config.rClimbRate;
+        this.rDropRate = game.config.rDropRate;
+        this.rPenaltyRate = game.config.rPenaltyRate;
+        this.rDelayAmount = game.config.rDelayAmount;
 
         this.gameOver = false;
         this.hasWon = false;
@@ -163,6 +171,9 @@ class LeftTaskScene extends Phaser.Scene {
                 this.container1.alpha = 1;
                 this.container1.setInteractive()
                 this.loseText.alpha = 1;
+
+                // Save game data.
+                this.saveGameData(false);
             }
         }
     }
@@ -177,6 +188,9 @@ class LeftTaskScene extends Phaser.Scene {
 
             this.container1.alpha = 1;
             this.container1.setInteractive()
+
+            // Save game data.
+            this.saveGameData(true);
         }
     }
 
@@ -187,5 +201,31 @@ class LeftTaskScene extends Phaser.Scene {
         this.barTimedEvent = this.time.addEvent({ delay: 50, callback: this.raiseBar, callbackScope: this, loop: true });
         this.currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
         this.currentTone.play();
+    }
+
+    saveGameData(didWin) {
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(
+                {
+                    task: "left",
+                    did_win: didWin,
+                    left_climb_rate: this.lRiseRate,
+                    left_drop_amount: this.lDropRate,
+                    left_penalty_amount: this.lPenaltyRate,
+                    left_delay_amount: this.lDelayAmount,
+                    right_climb_rate: this.rRiseRate,
+                    right_drop_amount: this.rDropRate,
+                    right_penalty_amount: this.rPenaltyRate,
+                    right_delay_amount: this.rDelayAmount
+                })
+        };
+
+
+        fetch('/saveGameData', requestOptions)
+            .then(() => {
+
+            });
     }
 }
