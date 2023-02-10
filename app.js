@@ -30,7 +30,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//password: 'password',
+	// password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -164,6 +164,36 @@ app.put('/instructions-3/edit', function (req, res, next) {
 	});
 });
 
+// Save game data.
+// app.post('/saveGameData', (req, res) => {
+// 	console.log("test")
+
+// 	let sqlQuery = "INSERT INTO games SET ?";
+
+// 	let data = {
+// 		date: new Date(),
+// 		task: req.body.task,
+// 		did_win: req.body.did_win,
+// 		left_climb_rate: req.body.left_climb_rate,
+// 		right_climb_rate: req.body.right_climb_rate,
+// 		left_drop_amount: req.body.left_drop_amount,
+// 		right_drop_amount: req.body.right_drop_amount,
+// 		left_delay_amount: req.body.left_delay_amount,
+// 		right_delay_amount: req.body.right_delay_amount,
+// 		left_penalty_amount: req.body.left_penalty_amount,
+// 		right_penalty_amount: req.body.right_penalty_amount
+// 	};
+
+// 	let query = conn.query(sqlQuery, data, (err, results) => {
+// 		if (err) throw err;
+// 		res.json(results);
+// 	});
+
+// });
+
+
+
+// Not used currently
 /* Login. ---------------------------------------------------*/
 app.get('/login', (req, res) => {
 	res.render('login');
@@ -187,6 +217,11 @@ app.post('/login-attempt', (req, res) => {
 	});
 });
 
+
+/* FAQ. ---------------------------------------------------*/
+app.get('/faq', (req, res) => {
+	res.render('faq');
+})
 
 //app.use('/', indexRouter);
 //app.use('/parameters', parametersRouter);
