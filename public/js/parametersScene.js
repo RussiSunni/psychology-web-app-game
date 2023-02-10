@@ -61,13 +61,17 @@ class ParametersScene extends Phaser.Scene {
         this.formUtil.scaleToGameW("l_bar_delay_amount", .1);
         this.formUtil.placeElementAt(59, 'l_bar_delay_amount', true);
 
+        this.formUtil.showElement("admin_code");
+        this.formUtil.scaleToGameW("admin_code", .1);
+        this.formUtil.placeElementAt(81, 'admin_code', true);
+
 
         // Save button
         var roundedRect1 = this.add.graphics();
         roundedRect1.fillStyle(0x70ad47, 1);
         roundedRect1.fillRoundedRect(0, 0, 200, 60, 8);
         var text1 = this.add.text(20, 15, "Save", { fontFamily: "Arial", fontSize: "30px" });
-        this.container1 = this.add.container(300, 400, [roundedRect1, text1]);
+        this.container1 = this.add.container(20, 400, [roundedRect1, text1]);
         this.container1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
         this.container1.on('pointerover', function () {
             roundedRect1.clear();
@@ -89,7 +93,7 @@ class ParametersScene extends Phaser.Scene {
         roundedRect2.fillStyle(0x70ad47, 1);
         roundedRect2.fillRoundedRect(0, 0, 200, 60, 8);
         var text2 = this.add.text(20, 15, "Return", { fontFamily: "Arial", fontSize: "30px" });
-        this.container2 = this.add.container(300, 500, [roundedRect2, text2]);
+        this.container2 = this.add.container(20, 500, [roundedRect2, text2]);
         this.container2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
         this.container2.on('pointerover', function () {
             roundedRect2.clear();
@@ -116,27 +120,39 @@ class ParametersScene extends Phaser.Scene {
         this.rPenaltyRate = this.formUtil.getTextAreaValue("r_bar_penalty_rate");
         this.rDelayAmount = this.formUtil.getTextAreaValue("r_bar_delay_amount");
 
-        // Save the parameters to the database.          
-        const requestOptions = {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(
-                {
-                    left_climb_rate: this.lClimbRate,
-                    left_drop_amount: this.lDropRate,
-                    left_penalty_amount: this.lPenaltyRate,
-                    left_delay_amount: this.lDelayAmount,
-                    right_climb_rate: this.rClimbRate,
-                    right_drop_amount: this.rDropRate,
-                    right_penalty_amount: this.rPenaltyRate,
-                    right_delay_amount: this.rDelayAmount
-                })
-        };
+        //Load the data into Phaser.
+        game.config.lClimbRate = this.lClimbRate;
+        game.config.lDropRate = this.lDropRate;
+        game.config.lPenaltyRate = this.lPenaltyRate;
+        game.config.lDelayAmount = this.lDelayAmount;
+        game.config.rClimbRate = this.rClimbRate;
+        game.config.rDropRate = this.rDropRate;
+        game.config.rPenaltyRate = this.rPenaltyRate;
+        game.config.rDelayAmount = this.rDelayAmount;
 
+        if (this.formUtil.getTextAreaValue("admin_code") == "1234") {
 
-        fetch('/parameters', requestOptions)
-            .then(() => {
+            // Save the parameters to the database.          
+            const requestOptions = {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(
+                    {
+                        left_climb_rate: this.lClimbRate,
+                        left_drop_amount: this.lDropRate,
+                        left_penalty_amount: this.lPenaltyRate,
+                        left_delay_amount: this.lDelayAmount,
+                        right_climb_rate: this.rClimbRate,
+                        right_drop_amount: this.rDropRate,
+                        right_penalty_amount: this.rPenaltyRate,
+                        right_delay_amount: this.rDelayAmount
+                    })
+            };
 
-            });
+            fetch('/parameters', requestOptions)
+                .then(() => {
+
+                });
+        }
     }
 }

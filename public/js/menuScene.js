@@ -3,22 +3,7 @@ class MenuScene extends Phaser.Scene {
         super('MenuScene');
     }
     init() {
-        // Get parameters stored in the database.
-        fetch('/parameters')
-            .then(function (response) {
-                return response.json();
-            }).then(function (data) {
 
-                // Load the data into Phaser.
-                game.config.lClimbRate = data.left_climb_rate;
-                game.config.lDropRate = data.left_drop_amount;
-                game.config.lPenaltyRate = data.left_penalty_amount;
-                game.config.lDelayAmount = data.left_delay_amount;
-                game.config.rClimbRate = data.right_climb_rate;
-                game.config.rDropRate = data.right_drop_amount;
-                game.config.rPenaltyRate = data.right_penalty_amount;
-                game.config.rDelayAmount = data.right_delay_amount;
-            });
     }
 
     preload() {
@@ -125,5 +110,6 @@ class MenuScene extends Phaser.Scene {
         this.formUtil.hideElement("r_bar_down_rate");
         this.formUtil.hideElement("r_bar_penalty_rate");
         this.formUtil.hideElement("r_bar_delay_amount");
+        this.formUtil.hideElement("admin_code");
     }
 }
