@@ -30,9 +30,6 @@
                     <a id="edit-button" class="btn btn-info" role="button" href="/instructions-1/edit"
                         style="display:none">Edit</a>
                 </li>
-                <li class="nav-item">
-                    <input id="edit-code" type="text" class="form-control" placeholder="code" aria-label="Code">
-                </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -47,6 +44,10 @@
         <div id="instructions"></div>
 
     </div>
+    <nav class="navbar fixed-bottom bg-light">
+        <input id="edit-code" type="text" class="form-control" placeholder="code" aria-label="Code"
+            style="width: 100px">
+    </nav>
     <script>
         // Show the edit button, if code is correct.
         document.getElementById('edit-code').addEventListener("input", function (e) {
