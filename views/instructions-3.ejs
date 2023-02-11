@@ -59,6 +59,9 @@
             if (this.value == "1234") {
                 document.getElementById('edit-button').style.display = "block";
             }
+
+            // Save to browser storage for use in next step.
+            localStorage.setItem("code", this.value);
         });
 
         // Load the instructions.

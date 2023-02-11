@@ -35,18 +35,23 @@
     <script>
         // Save instructions.
         function submit() {
-            var url = "/instructions-2/edit";
-            var resourceData = $('#summernote').summernote("code");
+            if (localStorage.getItem("code") == "1234") {
+                var url = "/instructions-2/edit";
+                var resourceData = $('#summernote').summernote("code");
 
-            const requestOptions = {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ editordata: resourceData })
-            };
-            fetch(url, requestOptions)
-                .then(() => {
-                    window.location.href = '../'; //one level up
-                });
+                const requestOptions = {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ editordata: resourceData })
+                };
+                fetch(url, requestOptions)
+                    .then(() => {
+                        window.location.href = '../'; //one level up
+                    });
+            }
+            else {
+                console.log("wrong code")
+            }
         }
 
         // Load current instructions.
