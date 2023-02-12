@@ -130,7 +130,7 @@ class ParametersScene extends Phaser.Scene {
         game.config.rPenaltyRate = this.rPenaltyRate;
         game.config.rDelayAmount = this.rDelayAmount;
 
-        if (this.formUtil.getTextAreaValue("admin_code") == "1234") {
+        if (this.formUtil.getTextAreaValue("admin_code") == "1967") {
 
             // Save the parameters to the database.          
             const requestOptions = {
