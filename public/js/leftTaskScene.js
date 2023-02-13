@@ -27,14 +27,14 @@ class LeftTaskScene extends Phaser.Scene {
     }
 
     init() {
-        this.lRiseRate = game.config.lClimbRate;
-        this.lDropRate = game.config.lDropRate;
-        this.lPenaltyRate = game.config.lPenaltyRate;
-        this.lDelayAmount = game.config.lDelayAmount;
-        this.rRiseRate = game.config.rClimbRate;
-        this.rDropRate = game.config.rDropRate;
-        this.rPenaltyRate = game.config.rPenaltyRate;
-        this.rDelayAmount = game.config.rDelayAmount;
+        this.lRiseRate = Number(game.config.lClimbRate);
+        this.lDropRate = Number(game.config.lDropRate);
+        this.lPenaltyRate = Number(game.config.lPenaltyRate);
+        this.lDelayAmount = Number(game.config.lDelayAmount);
+        this.rRiseRate = Number(game.config.rClimbRate);
+        this.rDropRate = Number(game.config.rDropRate);
+        this.rPenaltyRate = Number(game.config.rPenaltyRate);
+        this.rDelayAmount = Number(game.config.rDelayAmount);
 
         this.gameOver = false;
         this.hasWon = false;
