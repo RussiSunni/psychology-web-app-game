@@ -22,9 +22,15 @@ class ParametersScene extends Phaser.Scene {
             cols: 11
         });
 
+        // Text
         var lTitle = this.add.text(220, 25, "Left Side", { fontFamily: "Arial", fontSize: "48px", color: '#FFFFFF' });
         var rTitle = this.add.text(500, 25, "Right Side", { fontFamily: "Arial", fontSize: "48px", color: '#FFFFFF' });
 
+        var rTitle = this.add.text(280, 400,
+            "You can change these parameters and see how it affects the game.\n\nBut you cannot SAVE parameters as default without the code.",
+            { fontFamily: "Arial", fontSize: "16px", color: '#FFFFFF' });
+
+        //Form
         var text1 = this.add.text(20, 120, "climb rate", { fontFamily: "Arial", fontSize: "30px" });
         this.formUtil.showElement("r_bar_up_rate");
         this.formUtil.scaleToGameW("r_bar_up_rate", .1);
@@ -63,7 +69,7 @@ class ParametersScene extends Phaser.Scene {
 
         this.formUtil.showElement("admin_code");
         this.formUtil.scaleToGameW("admin_code", .1);
-        this.formUtil.placeElementAt(81, 'admin_code', true);
+        this.formUtil.placeElementAt(107, 'admin_code', true);
 
 
         // Save button
@@ -108,6 +114,7 @@ class ParametersScene extends Phaser.Scene {
         this.container2.on('pointerdown', function () {
             this.scene.start("MenuScene", { l_bar_up_rate: this.lClimbRate, l_bar_down_rate: this.lDropRate, l_bar_penalty_rate: this.lPenaltyRate, r_bar_up_rate: this.rClimbRate, r_bar_down_rate: this.rDropRate, r_bar_penalty_rate: this.rPenaltyRate });
         }, this);
+
     }
 
     saveValues() {
