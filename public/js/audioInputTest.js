@@ -2,8 +2,8 @@ class AudioInputTest extends Phaser.Scene {
     constructor() {
         super('AudioInputTest');
         this.leftSideRect;
-        this.toneArray;
-        this.currentTone;
+
+
         this.barTimedEvent;
         this.WKey;
         this.SKey;
@@ -24,6 +24,32 @@ class AudioInputTest extends Phaser.Scene {
         this.lDelayAmount;
         this.rDelayAmount;
         this.isDelay;
+        this.saidWord = "test";
+        this.recognition = new webkitSpeechRecognition();
+
+        // set params
+        this.recognition.continuous = true;
+        this.recognition.interimResults = true;
+        this.recognition.start();
+
+        this.recognition.onerror = function (event) {
+            console.log('error?');
+            console.log(event);
+        }
+
+        // this.recognition.onresult = function (event) {
+        //     // delve into words detected results & get the latest
+        //     // total results detected
+        //     var resultsLength = event.results.length - 1;
+        //     // get length of latest results
+        //     var ArrayLength = event.results[resultsLength].length - 1;
+        //     // get last word detected
+        //     this.saidWord = event.results[resultsLength][ArrayLength].transcript;
+
+        //     console.log(this.saidWord);
+        // }
+
+
     }
 
     init() {
@@ -50,53 +76,6 @@ class AudioInputTest extends Phaser.Scene {
 
     create() {
 
-        // Speech recognition --------------
-        // new instance of speech recognition
-        var recognition = new webkitSpeechRecognition();
-
-        // set params
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.start();
-
-        recognition.onresult = function (event) {
-
-            // delve into words detected results & get the latest
-            // total results detected
-            var resultsLength = event.results.length - 1;
-            // get length of latest results
-            var ArrayLength = event.results[resultsLength].length - 1;
-            // get last word detected
-            var saidWord = event.results[resultsLength][ArrayLength].transcript;
-
-            // loop through links and match to word spoken
-            // for (i = 0; i < allLinks.length; i++) {
-
-            //     // get the word associated with the link
-            //     var dataWord = allLinks[i].dataset.word;
-
-            //     // if word matches chenge the colour of the link
-            //     if (saidWord.indexOf(dataWord) != -1) {
-            //         allLinks[i].style.color = 'red';
-            //     }
-            // }
-
-            // append the last word to the bottom sentence
-            // strongEl.innerHTML = saidWord;
-
-            console.log(saidWord);
-
-            // speech error handling
-            recognition.onerror = function (event) {
-                console.log('error?');
-                console.log(event);
-            }
-        }
-
-
-        // ----------------------------
-
-
         this.startTimedEvent = this.time.addEvent({ delay: 2000, callback: this.startEvent, callbackScope: this, loop: false });
 
         // Bar.
@@ -109,6 +88,7 @@ class AudioInputTest extends Phaser.Scene {
         this.tone500hzAudio = this.sound.add("tone500hz");
         this.tone200hzAudio = this.sound.add("tone200hz");
         this.toneArray = [this.tone800hzAudio, this.tone500hzAudio, this.tone200hzAudio];
+        this.currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
 
         // Keyboard Keys.
         this.WKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -148,29 +128,10 @@ class AudioInputTest extends Phaser.Scene {
             this.scene.start("MenuScene");
         }, this);
 
-        // Audio Test Button --------------------------------
-        var roundedRect2 = this.add.graphics();
-        roundedRect2.fillStyle(0x70ad47, 1);
-        roundedRect2.fillRoundedRect(0, 0, 180, 60, 8);
-        var text2 = this.add.text(20, 15, "Speak", { fontFamily: "Arial", fontSize: "30px" });
-        this.container2 = this.add.container(300, 500, [roundedRect2, text2]);
-        this.container2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
-        this.container2.on('pointerover', function () {
-            roundedRect2.clear();
-            roundedRect2.fillStyle(0x5d913a, 1);
-            roundedRect2.fillRoundedRect(0, 0, 180, 60, 8);
-        }, this);
-        this.container2.on('pointerout', function () {
-            roundedRect2.clear();
-            roundedRect2.fillStyle(0x70ad47, 1);
-            roundedRect2.fillRoundedRect(0, 0, 180, 60, 8);
-        }, this);
-        this.container2.on('pointerdown', function () {
-
-        }, this);
     }
 
     update() {
+        this.test(this.recognition, this.currentTone, this.toneArray, this.changeTone)
         // Test for Correct Key.    
         if (this.hasWon == false && this.gameOver == false && this.isDelay == false) {
             if (Phaser.Input.Keyboard.JustDown(this.WKey)) {
@@ -217,6 +178,41 @@ class AudioInputTest extends Phaser.Scene {
         if (this.leftSideRect.y < -400) {
             this.leftSideRect.y = -400;
         }
+
+        // this.recognition.onresult = function (event) {
+        //     // delve into words detected results & get the latest
+        //     // total results detected
+        //     var resultsLength = event.results.length - 1;
+        //     // get length of latest results
+        //     var ArrayLength = event.results[resultsLength].length - 1;
+        //     // get last word detected
+        //     this.saidWord = event.results[resultsLength][ArrayLength].transcript;
+
+        //     console.log(this.saidWord);
+
+        //     if (this.saidWord == "hi" || this.saidWord == "high") {
+        //         console.log("said hi")
+        //         if (this.currentTone == this.toneArray[0]) {
+        //             console.log("correct")
+        //         }
+        //     }
+        //     else if (this.saidWord == "medium") {
+        //         console.log("said medium")
+        //         if (this.currentTone == this.toneArray[1]) {
+        //             console.log("correct")
+        //         }
+        //     }
+        //     else if (this.saidWord == "low") {
+        //         console.log("said low")
+        //         if (this.currentTone == this.toneArray[2]) {
+        //             console.log("correct")
+        //         }
+        //     }
+        // }
+
+
+
+
     }
 
     changeTone() {
@@ -247,8 +243,6 @@ class AudioInputTest extends Phaser.Scene {
         }
     }
 
-    gameOverManager() {
-    }
 
     winEvent() {
         if (this.gameOver == false) {
@@ -270,6 +264,8 @@ class AudioInputTest extends Phaser.Scene {
         this.barTimedEvent = this.time.addEvent({ delay: 50, callback: this.raiseBar, callbackScope: this, loop: true });
         this.currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
         this.currentTone.play();
+
+
     }
 
     saveGameData(didWin) {
@@ -297,4 +293,40 @@ class AudioInputTest extends Phaser.Scene {
 
             });
     }
+
+    test(recognition, tone, toneArray, changeTone) {
+
+        recognition.onresult = function (event) {
+            // delve into words detected results & get the latest
+            // total results detected
+            var resultsLength = event.results.length - 1;
+            // get length of latest results
+            var ArrayLength = event.results[resultsLength].length - 1;
+            // get last word detected
+            var saidWord = event.results[resultsLength][ArrayLength].transcript;
+
+            console.log(saidWord);
+            console.log(tone);
+
+            if (saidWord == "hi" || saidWord == "high") {
+                if (tone == toneArray[0]) {
+                    console.log("correct")
+                    changeTone()
+                }
+            }
+            else if (saidWord == "medium") {
+                if (tone == toneArray[1]) {
+                    console.log("correct")
+                    changeTone()
+                }
+            }
+            else if (saidWord == "low") {
+                if (tone == toneArray[2]) {
+                    console.log("correct")
+                    changeTone()
+                }
+            }
+        }
+    }
+
 }
