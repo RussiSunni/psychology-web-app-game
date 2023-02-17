@@ -7,7 +7,7 @@ window.onload = function () {
         parent: 'phaser-game',
         backgroundColor: '#000000',
 
-        scene: [MenuScene, ParametersScene, LeftTaskScene, RightTaskScene, BothTasksScene]
+        scene: [MenuScene, ParametersScene, LeftTaskScene, RightTaskScene, BothTasksScene, AudioInputTest]
     };
     game = new Phaser.Game(config);
 

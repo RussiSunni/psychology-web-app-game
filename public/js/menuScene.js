@@ -79,7 +79,7 @@ class MenuScene extends Phaser.Scene {
         roundedRect4.fillStyle(0x70ad47, 1);
         roundedRect4.fillRoundedRect(0, 0, 200, 60, 8);
         var text4 = this.add.text(20, 15, "Both Tasks", { fontFamily: "Arial", fontSize: "30px" });
-        this.container4 = this.add.container(300, 250, [roundedRect4, text4]);
+        this.container4 = this.add.container(100, 250, [roundedRect4, text4]);
         this.container4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
         this.container4.on('pointerover', function () {
             roundedRect4.clear();
@@ -93,6 +93,28 @@ class MenuScene extends Phaser.Scene {
         }, this);
         this.container4.on('pointerdown', function () {
             this.scene.start("BothTasksScene");
+        }, this);
+
+
+        // Audio button
+        var roundedRect5 = this.add.graphics();
+        roundedRect5.fillStyle(0x70ad47, 1);
+        roundedRect5.fillRoundedRect(0, 0, 200, 60, 8);
+        var text5 = this.add.text(20, 15, "Audio", { fontFamily: "Arial", fontSize: "30px" });
+        this.container5 = this.add.container(500, 250, [roundedRect5, text5]);
+        this.container5.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
+        this.container5.on('pointerover', function () {
+            roundedRect5.clear();
+            roundedRect5.fillStyle(0x5d913a, 1);
+            roundedRect5.fillRoundedRect(0, 0, 200, 60, 8);
+        }, this);
+        this.container5.on('pointerout', function () {
+            roundedRect5.clear();
+            roundedRect5.fillStyle(0x70ad47, 1);
+            roundedRect5.fillRoundedRect(0, 0, 200, 60, 8);
+        }, this);
+        this.container5.on('pointerdown', function () {
+            this.scene.start("AudioInputTest");
         }, this);
 
 
