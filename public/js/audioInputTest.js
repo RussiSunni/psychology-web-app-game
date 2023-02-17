@@ -10,6 +10,8 @@ class AudioInputTest extends Phaser.Scene {
         this.XKey;
         this.gameOver;
         this.hasWon;
+        this.gameOver;
+        this.hasWon;
         this.gameOverAudio;
         this.gameOverAudioIteration = 0;
         this.winTimer;
@@ -131,7 +133,7 @@ class AudioInputTest extends Phaser.Scene {
     }
 
     update() {
-        this.test(this.recognition, this.currentTone, this.toneArray, this.changeTone)
+        this.test(this.recognition, this.currentTone, this.toneArray, this.changeTone, this.isDelay)
         // Test for Correct Key.    
         if (this.hasWon == false && this.gameOver == false && this.isDelay == false) {
             if (Phaser.Input.Keyboard.JustDown(this.WKey)) {
@@ -215,13 +217,13 @@ class AudioInputTest extends Phaser.Scene {
 
     }
 
-    changeTone() {
-        if (this.gameOver == false && this.hasWon == false) {
-            this.currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
-            this.currentTone.play();
+    changeTone(toneArray, currentTone, isDelay) {
+        //  if (this.gameOver == false && this.hasWon == false) {
+        currentTone = toneArray[Math.floor(Math.random() * toneArray.length)];
+        currentTone.play();
 
-            this.isDelay = false;
-        }
+        isDelay = false;
+        //  }
     }
 
     raiseBar() {
@@ -294,7 +296,7 @@ class AudioInputTest extends Phaser.Scene {
             });
     }
 
-    test(recognition, tone, toneArray, changeTone) {
+    test(recognition, tone, toneArray, changeTone, isDelay) {
 
         recognition.onresult = function (event) {
             // delve into words detected results & get the latest
@@ -311,19 +313,19 @@ class AudioInputTest extends Phaser.Scene {
             if (saidWord == "hi" || saidWord == "high") {
                 if (tone == toneArray[0]) {
                     console.log("correct")
-                    changeTone()
+                    changeTone(toneArray, tone, isDelay)
                 }
             }
             else if (saidWord == "medium") {
                 if (tone == toneArray[1]) {
                     console.log("correct")
-                    changeTone()
+                    changeTone(toneArray, tone, isDelay)
                 }
             }
             else if (saidWord == "low") {
                 if (tone == toneArray[2]) {
                     console.log("correct")
-                    changeTone()
+                    changeTone(toneArray, tone, isDelay)
                 }
             }
         }
