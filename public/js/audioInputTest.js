@@ -29,7 +29,10 @@ class AudioInputTest extends Phaser.Scene {
 
         // set params
         this.recognition.continuous = true;
-        this.recognition.interimResults = false;
+        this.recognition.interimResults = true;
+        this.recognition.lang = 'en-US';
+        this.recognition.maxAlternatives = 1;
+
         this.recognition.start();
 
         this.recognition.onerror = function (event) {
@@ -61,6 +64,7 @@ class AudioInputTest extends Phaser.Scene {
     }
 
     create() {
+
 
         this.startTimedEvent = this.time.addEvent({ delay: 2000, callback: this.startEvent, callbackScope: this, loop: false });
 
@@ -125,11 +129,13 @@ class AudioInputTest extends Phaser.Scene {
 
         var currentTone;
 
+
         //  if (this.gameOver == false && this.hasWon == false) {
         currentTone = toneArray[Math.floor(Math.random() * toneArray.length)];
         currentTone.play();
 
         checkSpeech(recognition, currentTone, toneArray, changeTone, leftSideRect, lDropRate, checkSpeech)
+
         //  }
     }
 
@@ -174,6 +180,7 @@ class AudioInputTest extends Phaser.Scene {
         var currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
         currentTone.play();
 
+
         this.checkSpeech(this.recognition, currentTone, this.toneArray, this.changeTone, this.leftSideRect, this.lDropRate, this.checkSpeech)
     }
 
@@ -206,6 +213,7 @@ class AudioInputTest extends Phaser.Scene {
     checkSpeech(recognition, tone, toneArray, changeTone, leftSideRect, lDropRate, checkSpeech) {
 
         recognition.onresult = function (event) {
+
             // delve into words detected results & get the latest
             // total results detected
             var resultsLength = event.results.length - 1;
@@ -220,26 +228,28 @@ class AudioInputTest extends Phaser.Scene {
 
             if (saidWord == "hi" || saidWord == "high") {
                 if (tone == toneArray[0]) {
-                    leftSideRect.y = leftSideRect.y + lDropRate;
 
+                    leftSideRect.y = leftSideRect.y + lDropRate;
                     changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
+
                 }
             }
             else if (saidWord == "medium") {
                 if (tone == toneArray[1]) {
-                    leftSideRect.y = leftSideRect.y + lDropRate;
 
+                    leftSideRect.y = leftSideRect.y + lDropRate;
                     changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
+
                 }
             }
             else if (saidWord == "low" || saidWord == "hello" || saidWord == "no") {
                 if (tone == toneArray[2]) {
-                    leftSideRect.y = leftSideRect.y + lDropRate;
 
+                    leftSideRect.y = leftSideRect.y + lDropRate;
                     changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
+
                 }
             }
         }
     }
-
 }
