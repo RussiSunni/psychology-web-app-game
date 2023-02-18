@@ -129,7 +129,7 @@ class AudioInputTest extends Phaser.Scene {
         currentTone = toneArray[Math.floor(Math.random() * toneArray.length)];
         currentTone.play();
 
-        checkSpeech(recognition, currentTone, toneArray, changeTone, leftSideRect, lDropRate)
+        checkSpeech(recognition, currentTone, toneArray, changeTone, leftSideRect, lDropRate, checkSpeech)
         //  }
     }
 
@@ -215,8 +215,8 @@ class AudioInputTest extends Phaser.Scene {
             var saidWord = event.results[resultsLength][ArrayLength].transcript;
 
             saidWord = saidWord.trim();
-            console.log(tone);
-            // console.log(toneArray);
+            //console.log(tone);
+            console.log(saidWord);
 
             if (saidWord == "hi" || saidWord == "high") {
                 if (tone == toneArray[0]) {
@@ -233,7 +233,7 @@ class AudioInputTest extends Phaser.Scene {
                 }
             }
             else if (saidWord == "low" || saidWord == "hello" || saidWord == "no") {
-                if (tone == toneArray[2]) {               
+                if (tone == toneArray[2]) {
                     leftSideRect.y = leftSideRect.y + lDropRate;
 
                     changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
