@@ -100,7 +100,7 @@ class MenuScene extends Phaser.Scene {
         var roundedRect5 = this.add.graphics();
         roundedRect5.fillStyle(0x70ad47, 1);
         roundedRect5.fillRoundedRect(0, 0, 200, 60, 8);
-        var text5 = this.add.text(20, 15, "Audio", { fontFamily: "Arial", fontSize: "30px" });
+        var text5 = this.add.text(20, 15, "Audio Input Test", { fontFamily: "Arial", fontSize: "24px" });
         this.container5 = this.add.container(500, 250, [roundedRect5, text5]);
         this.container5.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
         this.container5.on('pointerover', function () {
