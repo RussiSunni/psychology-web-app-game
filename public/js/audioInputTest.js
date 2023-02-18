@@ -2,9 +2,8 @@ class AudioInputTest extends Phaser.Scene {
     constructor() {
         super('AudioInputTest');
         this.leftSideRect;
-
-
         this.barTimedEvent;
+        this.toneArray;
         this.WKey;
         this.SKey;
         this.XKey;
@@ -26,32 +25,17 @@ class AudioInputTest extends Phaser.Scene {
         this.lDelayAmount;
         this.rDelayAmount;
         this.isDelay;
-        this.saidWord = "test";
         this.recognition = new webkitSpeechRecognition();
 
         // set params
         this.recognition.continuous = true;
-        this.recognition.interimResults = true;
+        this.recognition.interimResults = false;
         this.recognition.start();
 
         this.recognition.onerror = function (event) {
             console.log('error?');
             console.log(event);
         }
-
-        // this.recognition.onresult = function (event) {
-        //     // delve into words detected results & get the latest
-        //     // total results detected
-        //     var resultsLength = event.results.length - 1;
-        //     // get length of latest results
-        //     var ArrayLength = event.results[resultsLength].length - 1;
-        //     // get last word detected
-        //     this.saidWord = event.results[resultsLength][ArrayLength].transcript;
-
-        //     console.log(this.saidWord);
-        // }
-
-
     }
 
     init() {
@@ -130,99 +114,22 @@ class AudioInputTest extends Phaser.Scene {
             this.scene.start("MenuScene");
         }, this);
 
+
+
     }
 
     update() {
-        this.test(this.recognition, this.currentTone, this.toneArray, this.changeTone, this.isDelay)
-        // Test for Correct Key.    
-        if (this.hasWon == false && this.gameOver == false && this.isDelay == false) {
-            if (Phaser.Input.Keyboard.JustDown(this.WKey)) {
-                if (this.currentTone == this.toneArray[0]) {
-                    this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.isDelay = true;
-                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
-                }
-                else {
-                    if (this.leftSideRect.y - this.lPenaltyRate > -400)
-                        this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
-                    else
-                        this.leftSideRect.y = -400
-                }
-            }
-            else if (Phaser.Input.Keyboard.JustDown(this.SKey)) {
-                if (this.currentTone == this.toneArray[1]) {
-                    this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.isDelay = true;
-                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
-                }
-                else {
-                    if (this.leftSideRect.y - this.lPenaltyRate > -400)
-                        this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
-                    else
-                        this.leftSideRect.y = -400
-                }
-            }
-            else if (Phaser.Input.Keyboard.JustDown(this.XKey)) {
-                if (this.currentTone == this.toneArray[2]) {
-                    this.leftSideRect.y = this.leftSideRect.y + this.lDropRate;
-                    this.isDelay = true;
-                    this.changeToneTimer = this.time.delayedCall(this.lDelayAmount, this.changeTone, [], this);
-                }
-                else {
-                    if (this.leftSideRect.y - this.lPenaltyRate > -400)
-                        this.leftSideRect.y = this.leftSideRect.y - this.lPenaltyRate;
-                    else
-                        this.leftSideRect.y = -400
-                }
-            }
-        }
-
-        if (this.leftSideRect.y < -400) {
-            this.leftSideRect.y = -400;
-        }
-
-        // this.recognition.onresult = function (event) {
-        //     // delve into words detected results & get the latest
-        //     // total results detected
-        //     var resultsLength = event.results.length - 1;
-        //     // get length of latest results
-        //     var ArrayLength = event.results[resultsLength].length - 1;
-        //     // get last word detected
-        //     this.saidWord = event.results[resultsLength][ArrayLength].transcript;
-
-        //     console.log(this.saidWord);
-
-        //     if (this.saidWord == "hi" || this.saidWord == "high") {
-        //         console.log("said hi")
-        //         if (this.currentTone == this.toneArray[0]) {
-        //             console.log("correct")
-        //         }
-        //     }
-        //     else if (this.saidWord == "medium") {
-        //         console.log("said medium")
-        //         if (this.currentTone == this.toneArray[1]) {
-        //             console.log("correct")
-        //         }
-        //     }
-        //     else if (this.saidWord == "low") {
-        //         console.log("said low")
-        //         if (this.currentTone == this.toneArray[2]) {
-        //             console.log("correct")
-        //         }
-        //     }
-        // }
-
-
-
-
     }
 
-    changeTone(toneArray, currentTone, isDelay) {
+    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate) {
+
+        var currentTone;
+
         //  if (this.gameOver == false && this.hasWon == false) {
         currentTone = toneArray[Math.floor(Math.random() * toneArray.length)];
         currentTone.play();
 
-        isDelay = false;
+        checkSpeech(recognition, currentTone, toneArray, changeTone, leftSideRect, lDropRate)
         //  }
     }
 
@@ -264,10 +171,10 @@ class AudioInputTest extends Phaser.Scene {
 
         // Left Side.
         this.barTimedEvent = this.time.addEvent({ delay: 50, callback: this.raiseBar, callbackScope: this, loop: true });
-        this.currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
-        this.currentTone.play();
+        var currentTone = this.toneArray[Math.floor(Math.random() * this.toneArray.length)];
+        currentTone.play();
 
-
+        this.checkSpeech(this.recognition, currentTone, this.toneArray, this.changeTone, this.leftSideRect, this.lDropRate, this.checkSpeech)
     }
 
     saveGameData(didWin) {
@@ -296,7 +203,7 @@ class AudioInputTest extends Phaser.Scene {
             });
     }
 
-    test(recognition, tone, toneArray, changeTone, isDelay) {
+    checkSpeech(recognition, tone, toneArray, changeTone, leftSideRect, lDropRate, checkSpeech) {
 
         recognition.onresult = function (event) {
             // delve into words detected results & get the latest
@@ -307,25 +214,29 @@ class AudioInputTest extends Phaser.Scene {
             // get last word detected
             var saidWord = event.results[resultsLength][ArrayLength].transcript;
 
-            console.log(saidWord);
+            saidWord = saidWord.trim();
             console.log(tone);
+            // console.log(toneArray);
 
             if (saidWord == "hi" || saidWord == "high") {
                 if (tone == toneArray[0]) {
-                    console.log("correct")
-                    changeTone(toneArray, tone, isDelay)
+                    leftSideRect.y = leftSideRect.y + lDropRate;
+
+                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
                 }
             }
             else if (saidWord == "medium") {
                 if (tone == toneArray[1]) {
-                    console.log("correct")
-                    changeTone(toneArray, tone, isDelay)
+                    leftSideRect.y = leftSideRect.y + lDropRate;
+
+                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
                 }
             }
-            else if (saidWord == "low") {
-                if (tone == toneArray[2]) {
-                    console.log("correct")
-                    changeTone(toneArray, tone, isDelay)
+            else if (saidWord == "low" || saidWord == "hello" || saidWord == "no") {
+                if (tone == toneArray[2]) {               
+                    leftSideRect.y = leftSideRect.y + lDropRate;
+
+                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
                 }
             }
         }
