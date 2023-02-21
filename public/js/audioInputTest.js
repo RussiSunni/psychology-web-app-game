@@ -125,16 +125,22 @@ class AudioInputTest extends Phaser.Scene {
     update() {
     }
 
-    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate) {
+    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate, tone) {
 
-        var currentTone;
-
+        // var currentTone;
 
         //  if (this.gameOver == false && this.hasWon == false) {
-        currentTone = toneArray[Math.floor(Math.random() * toneArray.length)];
-        currentTone.play();
+        var tempTone = toneArray[Math.floor(Math.random() * toneArray.length)];
 
-        checkSpeech(recognition, currentTone, toneArray, changeTone, leftSideRect, lDropRate, checkSpeech)
+        if (tone == tempTone) {
+            console.log("same")
+            changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate, tone)
+            return
+        }
+
+        tempTone.play();
+
+        checkSpeech(recognition, tempTone, toneArray, changeTone, leftSideRect, lDropRate, checkSpeech)
 
         //  }
     }
@@ -226,30 +232,45 @@ class AudioInputTest extends Phaser.Scene {
             //console.log(tone);
             console.log(saidWord);
 
-            if (saidWord == "hi" || saidWord == "high") {
+            if (saidWord == "hi" || saidWord == "high" || saidWord == "I") {
                 if (tone == toneArray[0]) {
+                    // recognition.abort()
 
                     leftSideRect.y = leftSideRect.y + lDropRate;
-                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
-
+                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate, tone)
                 }
             }
             else if (saidWord == "medium") {
                 if (tone == toneArray[1]) {
+                    // recognition.abort()
 
                     leftSideRect.y = leftSideRect.y + lDropRate;
-                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
-
+                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate, tone)
                 }
             }
             else if (saidWord == "low" || saidWord == "hello" || saidWord == "no") {
                 if (tone == toneArray[2]) {
+                    //  recognition.abort()
 
                     leftSideRect.y = leftSideRect.y + lDropRate;
-                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate)
-
+                    changeTone(toneArray, checkSpeech, recognition, changeTone, leftSideRect, lDropRate, tone)
                 }
             }
+
+            recognition.addEventListener('end', () => {
+                console.log('ended')
+                try {
+                    recognition.start()
+                } catch {
+
+                }
+            });
+
+            recognition.addEventListener('start', () => {
+                console.log('started')
+            });
+
+            return
         }
     }
 }
