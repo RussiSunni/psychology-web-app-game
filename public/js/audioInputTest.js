@@ -25,7 +25,17 @@ class AudioInputTest extends Phaser.Scene {
         this.lDelayAmount;
         this.rDelayAmount;
         this.isDelay;
+
+        // Web Speech API settings. ------------
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+        var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
+        const grammar = '#JSGF V1.0; grammar commands; public <command> = high | medium | low ;'
+
         this.recognition = new webkitSpeechRecognition();
+
+        var speechRecognitionList = new SpeechGrammarList();
+        speechRecognitionList.addFromString(grammar, 1);
+        this.recognition.grammars = speechRecognitionList;
 
         // set params
         this.recognition.continuous = true;
