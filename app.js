@@ -218,10 +218,11 @@ app.post('/login-attempt', (req, res) => {
 });
 
 
+// Uncomment when Hal says he wants this available again
 /* FAQ. ---------------------------------------------------*/
-app.get('/faq', (req, res) => {
-	res.render('faq');
-})
+// app.get('/faq', (req, res) => {
+// 	res.render('faq');
+// })
 
 //app.use('/', indexRouter);
 //app.use('/parameters', parametersRouter);
