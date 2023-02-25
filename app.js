@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mysql = require('mysql');
 
+// Routes.
 //var indexRouter = require('./routes/index');
 //var parametersRouter = require('./routes/parameters');
 
@@ -170,31 +171,31 @@ app.put('/instructions-3/edit', function (req, res, next) {
 });
 
 // Save game data.
-app.post('/saveGameData', (req, res) => {
-	console.log("test")
+// app.post('/saveGameData', (req, res) => {
+// 	console.log("test")
 
-	let sqlQuery = "INSERT INTO games SET ?";
+// 	let sqlQuery = "INSERT INTO games SET ?";
 
-	let data = {
-		date: new Date(),
-		task: req.body.task,
-		did_win: req.body.did_win,
-		left_climb_rate: req.body.left_climb_rate,
-		right_climb_rate: req.body.right_climb_rate,
-		left_drop_amount: req.body.left_drop_amount,
-		right_drop_amount: req.body.right_drop_amount,
-		left_delay_amount: req.body.left_delay_amount,
-		right_delay_amount: req.body.right_delay_amount,
-		left_penalty_amount: req.body.left_penalty_amount,
-		right_penalty_amount: req.body.right_penalty_amount
-	};
+// 	let data = {
+// 		date: new Date(),
+// 		task: req.body.task,
+// 		did_win: req.body.did_win,
+// 		left_climb_rate: req.body.left_climb_rate,
+// 		right_climb_rate: req.body.right_climb_rate,
+// 		left_drop_amount: req.body.left_drop_amount,
+// 		right_drop_amount: req.body.right_drop_amount,
+// 		left_delay_amount: req.body.left_delay_amount,
+// 		right_delay_amount: req.body.right_delay_amount,
+// 		left_penalty_amount: req.body.left_penalty_amount,
+// 		right_penalty_amount: req.body.right_penalty_amount
+// 	};
 
-	let query = conn.query(sqlQuery, data, (err, results) => {
-		if (err) throw err;
-		res.json(results);
-	});
+// 	let query = conn.query(sqlQuery, data, (err, results) => {
+// 		if (err) throw err;
+// 		res.json(results);
+// 	});
 
-});
+// });
 
 
 
