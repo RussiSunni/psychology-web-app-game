@@ -192,32 +192,6 @@ app.put('/instructions-3/edit', function (req, res, next) {
 // });
 
 
-
-// Not used currently
-/* Login. ---------------------------------------------------*/
-app.get('/login', (req, res) => {
-	res.render('login');
-})
-
-app.post('/login-attempt', (req, res) => {
-	res.setHeader('Content-Type', 'application/json');
-
-	// Execute SQL query that'll select the account from the database based on the specified username and password.
-	let sqlQuery = "SELECT * FROM visual_kalsbeek.users WHERE visual_kalsbeek.users.username = '" + req.body.username + "' AND skill_tree.users.password = '" + req.body.password + "';";
-
-	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) throw err;
-
-		if (results.length > 0) {
-			res.redirect('/');
-		} else {
-			res.redirect('/login');
-		}
-		res.end();
-	});
-});
-
-
 // Uncomment when Hal says he wants this available again
 /* FAQ. ---------------------------------------------------*/
 // app.get('/faq', (req, res) => {
