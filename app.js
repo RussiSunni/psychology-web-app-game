@@ -269,8 +269,8 @@ Server listening
 --------------------------------------------*/
 http.createServer(app).listen(80);
 https.createServer({
-	key: fs.readFileSync('server.key'),
-	cert: fs.readFileSync('server.cert')
+	key: fs.readFileSync('SSL/server.key'),
+	cert: fs.readFileSync('SSL/server.cert')
 }, app).listen(443);
 
 // app.listen(80, () => {
