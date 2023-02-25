@@ -173,7 +173,7 @@ class LeftTaskScene extends Phaser.Scene {
                 this.loseText.alpha = 1;
 
                 // Save game data.
-                this.saveGameData(false);
+                //  this.saveGameData(false);
             }
         }
     }
@@ -190,7 +190,7 @@ class LeftTaskScene extends Phaser.Scene {
             this.container1.setInteractive()
 
             // Save game data.
-            this.saveGameData(true);
+            //  this.saveGameData(true);
         }
     }
 
