@@ -43,10 +43,15 @@ const conn = mysql.createConnection({
 
 // Shows MariaDB Connect.
 conn.connect((err) => {
-	if (err) {
-		throw err;
+	try {
+		if (err) {
+			throw err;
+		}
+		console.log('MariaDB connected...');
+	} catch (err) {
+		console.log('DB connection problem.');
+		next(err)
 	}
-	console.log('MariaDB connected...');
 });
 
 
@@ -62,10 +67,14 @@ app.get('/parameters', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
 	let sqlQuery = "SELECT * FROM parameters";
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.json(results[0]);
+		} catch (err) {
+			next(err)
 		}
-		res.json(results[0]);
 	});
 });
 
@@ -83,10 +92,14 @@ app.put('/parameters', function (req, res, next) {
 	right_penalty_amount = '` + parseInt(req.body.right_penalty_amount) + `'; `;
 
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.json(results);
+		} catch (err) {
+			next(err)
 		}
-		res.json(results);
 	});
 });
 
@@ -108,10 +121,14 @@ app.get('/instructions-1/show', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
 	let sqlQuery = "SELECT left_task FROM instructions";
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.json(results[0]);
+		} catch (err) {
+			next(err)
 		}
-		res.json(results[0]);
 	});
 });
 
@@ -119,10 +136,14 @@ app.get('/instructions-2/show', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
 	let sqlQuery = "SELECT right_task FROM instructions";
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.json(results[0]);
+		} catch (err) {
+			next(err)
 		}
-		res.json(results[0]);
 	});
 });
 
@@ -130,10 +151,14 @@ app.get('/instructions-3/show', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
 	let sqlQuery = "SELECT both_tasks FROM instructions";
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.json(results[0]);
+		} catch (err) {
+			next(err)
 		}
-		res.json(results[0]);
 	});
 });
 
@@ -155,10 +180,14 @@ app.put('/instructions-1/edit', function (req, res, next) {
 
 	let sqlQuery = "UPDATE instructions SET left_task='" + escapedResult + "'";
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.end();
+		} catch (err) {
+			next(err)
 		}
-		res.end();
 	});
 });
 
@@ -168,10 +197,14 @@ app.put('/instructions-2/edit', function (req, res, next) {
 
 	let sqlQuery = "UPDATE instructions SET right_task='" + escapedResult + "'";
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.end();
+		} catch (err) {
+			next(err)
 		}
-		res.end();
 	});
 });
 
@@ -181,10 +214,14 @@ app.put('/instructions-3/edit', function (req, res, next) {
 
 	let sqlQuery = "UPDATE instructions SET both_tasks='" + escapedResult + "'";
 	let query = conn.query(sqlQuery, (err, results) => {
-		if (err) {
-			throw err;
+		try {
+			if (err) {
+				throw err;
+			}
+			res.end();
+		} catch (err) {
+			next(err)
 		}
-		res.end();
 	});
 });
 
@@ -213,14 +250,11 @@ app.put('/instructions-3/edit', function (req, res, next) {
 // });
 
 
-// Uncomment when Hal says he wants this available again
 /* FAQ. ---------------------------------------------------*/
-// app.get('/faq', (req, res) => {
-// 	res.render('faq');
-// })
+app.get('/faq', (req, res) => {
+	res.render('faq');
+})
 
-//app.use('/', indexRouter);
-//app.use('/parameters', parametersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
