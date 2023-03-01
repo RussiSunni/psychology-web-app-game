@@ -32,7 +32,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	password: 'password',
+	//password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -46,7 +46,6 @@ conn.connect((err) => {
 		console.log('MariaDB connected...');
 	} catch (err) {
 		console.log('DB connection problem.');
-		next(err)
 	}
 });
 
