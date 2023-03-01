@@ -41,7 +41,6 @@ conn.connect((err) => {
 		console.log('MariaDB connected...');
 	} catch (err) {
 		console.log('DB connection problem.');
-		next(err)
 	}
 });
 
