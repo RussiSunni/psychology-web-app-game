@@ -5,10 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mysql = require('mysql');
 
-// Routes.
-//var indexRouter = require('./routes/index');
-//var parametersRouter = require('./routes/parameters');
-
 // For SSL cert (HTTPS), required for microphone.
 var https = require('https');
 var http = require('http');
