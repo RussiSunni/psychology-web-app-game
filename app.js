@@ -5,9 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mysql = require('mysql');
 
-//var indexRouter = require('./routes/index');
-//var parametersRouter = require('./routes/parameters');
-
 var app = express();
 
 // view engine setup
@@ -192,14 +189,10 @@ app.put('/instructions-3/edit', function (req, res, next) {
 // });
 
 
-// Uncomment when Hal says he wants this available again
 /* FAQ. ---------------------------------------------------*/
-// app.get('/faq', (req, res) => {
-// 	res.render('faq');
-// })
-
-//app.use('/', indexRouter);
-//app.use('/parameters', parametersRouter);
+app.get('/faq', (req, res) => {
+	res.render('faq');
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
