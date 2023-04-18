@@ -1,0 +1,30 @@
+html,
+body {
+    height: 100%;
+    background-color: #333;
+    color: white;
+    background-image: url('/images/hero-images/hero-001.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+/* .cover-container {
+    max-width: 42em;
+} */
+
+.banner {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 10px;
+    margin: auto;
+    max-width: 400px;
+}
+
+a.nav-link {
+    color: white
+}
+
+.nav-masthead {
+    background-color: rgba(0, 0, 0, 0.8);
+}

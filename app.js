@@ -27,7 +27,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//password: 'password',
+	password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -50,6 +50,11 @@ conn.connect((err) => {
 app.get('/', (req, res) => {
 	res.render('index');
 })
+
+app.get('/game', (req, res) => {
+	res.render('game');
+})
+
 
 /* Parameters. ---------------------------------------------------*/
 /* GET parameters. */
