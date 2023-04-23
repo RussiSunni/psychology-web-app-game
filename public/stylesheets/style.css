@@ -1,30 +1,48 @@
 html,
 body {
     height: 100%;
-    background-color: #333;
-    color: white;
-    background-image: url('/images/hero-images/hero-002.png');
+    background-color: black;
+    color: #ffc107;
+    background-image: url('/images/hero-images/hero-003.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 }
 
-/* .cover-container {
-    max-width: 42em;
-} */
-
-.banner {
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 15px;
-    padding: 10px;
-    margin: auto;
-    max-width: 400px;
-}
-
-a.nav-link {
-    color: white
+body {
+    font-family: 'Roboto Slab', serif;
 }
 
 .nav-masthead {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+a.nav-link {
+    color: #ffc107;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 40px;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.banner {
+    background-color: black;
+    margin: auto;
+    max-width: fit-content;
+    padding: 5px;
+    border-radius: 0.3rem;
+}
+
+
+/* Medium screen devices (768px and above) */
+@media only screen and (max-width: 821px) {
+
+    html,
+    body {
+        background-image: url('/images/hero-images/hero-004.png');
+    }
 }

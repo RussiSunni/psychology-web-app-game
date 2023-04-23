@@ -9,7 +9,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Roboto+Slab:wght@700&display=swap"
+        rel="stylesheet">
     <link href="/stylesheets/style.css" rel="stylesheet">
     <title>Visible Bottleneck</title>
 </head>
@@ -17,24 +21,26 @@
 <body class="text-center">
     <div class="container h-100 mx-auto">
         <header class="masthead mb-auto">
-            <div class="inner">
-                <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="/">Home</a>
-                    <a class="nav-link" href="/faq">FAQ</a>
-                    <a class="nav-link" href="/instructions-1">Instructions</a>
-                    <a class="nav-link" href="/game">Game</a>
-                </nav>
-            </div>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="/">Home</a>
+                <a class="nav-link" href="/faq">FAQ</a>
+                <a class="nav-link" href="/instructions-1">Instructions</a>
+                <a class="nav-link" href="/game">Game</a>
+            </nav>
         </header>
+        <div class="text-center fixed-top">
+            <h1 class="banner" style="">
+                The
+                Visible Bottleneck
+            </h1>
+        </div>
 
         <div class="px-4 py-5 my-5 text-center fixed-bottom">
-            <div class="banner">
-                <h1 class="display-6 fw-bold">Test Your Focus</h1>
-                <div class="col-lg-6 mx-auto">
-                    <!-- <p class="lead mb-4">Can you defeat the multi-headed hydra?</p> -->
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <a href="/game" class="btn btn-danger btn-lg px-4 gap-3" role="button">Begin</a>
-                    </div>
+            <div class="col-lg-6 mx-auto">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/game" class="btn btn-outline-warning btn-lg px-4 gap-3" role="button"
+                        style="background-color: black;">Test Your
+                        Focus</a>
                 </div>
             </div>
         </div>
