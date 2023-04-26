@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,43 +18,66 @@
     <title>Visible Bottleneck</title>
 </head>
 
-<body class="text-center">
-    <div class="container h-100 mx-auto">
-        <header class="masthead mb-auto">
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="/">Home</a>
-                <a class="nav-link" href="/faq">FAQ</a>
-                <a class="nav-link" href="/instructions-1">Instructions</a>
-                <a class="nav-link" href="/game">Game</a>
-            </nav>
-        </header>
-        <div class="text-center fixed-top">
-            <h1 class="banner" style="">
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Instructions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Game</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="text-center banner fixed-bottom mx-auto"
+            style="margin-bottom: 0rem!important; padding-bottom: 1rem;">
+            <h1 class="display-1 text-danger" style="">
                 The
                 Visible Bottleneck
             </h1>
-        </div>
-
-        <div class="px-4 py-5 my-5 text-center fixed-bottom">
-            <div class="col-lg-6 mx-auto">
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <a href="/game" class="btn btn-outline-warning btn-lg px-4 gap-3" role="button"
-                        style="background-color: black;">Test Your
-                        Focus</a>
-                </div>
-            </div>
+            <a href="/game" class="btn btn-outline-danger btn-lg px-4 mt-3" role="button"
+                style="background-color: black;">Test
+                Your
+                Focus</a>
         </div>
     </div>
 
 
 
+    <!-- <div class=" text-center fixed-bottom my-5 mx-auto">
+
+    </div> -->
 
 
 
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 </body>
 

@@ -1,48 +1,43 @@
 html,
 body {
     height: 100%;
-    background-color: black;
-    color: #ffc107;
-    background-image: url('/images/hero-images/hero-003.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+
 }
 
 body {
     font-family: 'Roboto Slab', serif;
 }
 
-.nav-masthead {
-    background-color: rgba(0, 0, 0, 0.8);
+.main {
+    /* background-color: black; */
+    background-color: white;
+    /* background-image: url('/images/hero-images/hero-003.png'); */
+    background-image: url('/images/hero-images/hero-005.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    /* background-position: 50% 56px; */
+    height: 100%;
 }
 
 a.nav-link {
-    color: #ffc107;
+    /* color: #ffc107; */
+    color: black;
 }
 
-.fixed-top {
-    position: fixed;
-    top: 40px;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-}
 
 .banner {
-    background-color: black;
-    margin: auto;
-    max-width: fit-content;
-    padding: 5px;
-    border-radius: 0.3rem;
+    color: #ffc107;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%
 }
 
 
 /* Medium screen devices (768px and above) */
 @media only screen and (max-width: 821px) {
 
-    html,
-    body {
-        background-image: url('/images/hero-images/hero-004.png');
+    .main {
+        /* background-image: url('/images/hero-images/hero-004.png'); */
+        background-image: url('/images/hero-images/hero-006B.png');
     }
 }
