@@ -9,14 +9,11 @@ body {
 }
 
 .main {
-    /* background-color: black; */
     background-color: white;
-    /* background-image: url('/images/hero-images/hero-003.png'); */
     background-image: url('/images/hero-images/hero-005.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    /* background-position: 50% 56px; */
     height: 100%;
 }
 
@@ -37,7 +34,6 @@ a.nav-link {
 @media only screen and (max-width: 821px) {
 
     .main {
-        /* background-image: url('/images/hero-images/hero-004.png'); */
         background-image: url('/images/hero-images/hero-006B.png');
     }
 }
