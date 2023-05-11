@@ -22,12 +22,16 @@ a.nav-link {
     color: black;
 }
 
-
 .banner {
-    color: #ffc107;
     background-color: rgba(0, 0, 0, 0.8);
     width: 100%
 }
+
+.play-game-btn:hover {
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
 
 /* FAQ page */
 
