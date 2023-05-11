@@ -1,27 +1,24 @@
 html,
 body {
     height: 100%;
-
 }
 
 body {
-    font-family: 'Roboto Slab', serif;
+    /* font-family: 'Roboto Slab', serif; */
+    font-family: 'Montserrat',
+        sans-serif;
 }
 
 .main {
-    /* background-color: black; */
     background-color: white;
-    /* background-image: url('/images/hero-images/hero-003.png'); */
     background-image: url('/images/hero-images/hero-005.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    /* background-position: 50% 56px; */
     height: 100%;
 }
 
 a.nav-link {
-    /* color: #ffc107; */
     color: black;
 }
 
@@ -32,6 +29,34 @@ a.nav-link {
     width: 100%
 }
 
+/* FAQ page */
+
+
+/* Game page */
+.sidebar-btn {
+    position: fixed;
+    right: 0px;
+    z-index: 1;
+}
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    background-color: #fff;
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto;
+    top: 100px
+}
+
+.sidebar-animate-right {
+    position: relative;
+    animation: animateright 0.4s;
+}
+
+#admin_code {
+    background-color: lightgrey;
+}
 
 /* Medium screen devices (768px and above) */
 @media only screen and (max-width: 821px) {
