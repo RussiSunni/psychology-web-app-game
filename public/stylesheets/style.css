@@ -27,9 +27,10 @@ a.nav-link {
     width: 100%
 }
 
-.play-game-btn:hover {
-    color: #ffc107;
-    border-color: #ffc107;
+.play-game-btn:hover,
+.play-game-btn:active {
+    color: #ffc107 !important;
+    border-color: #ffc107 !important;
 }
 
 
