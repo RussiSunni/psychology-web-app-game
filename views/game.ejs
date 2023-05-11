@@ -67,8 +67,11 @@
         return check;
       };
 
-      if (window.mobileAndTabletCheck())
+      // Give message and redirect to Homer page.
+      if (window.mobileAndTabletCheck()) {
         alert("This game is not suitable for mobile devices. Please play on a latop or desktop computer.")
+        window.location.href = '../'
+      }
 
       // Toggle sidebar button.
       function ToggleSidebar() {
