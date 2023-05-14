@@ -44,8 +44,7 @@
                     <div class="resource-header-buttons col-2">
                     </div>
                 </div>
-                <div>
-                    {{comment.content}}
+                <div v-html="comment.content">
                 </div>
             </div>
         </div>
@@ -53,7 +52,6 @@
 
     <script>
         const { createApp } = Vue
-
         createApp({
             data() {
                 return {
