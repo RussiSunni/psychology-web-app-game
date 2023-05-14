@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="container">
         <h2>Comments</h2>
         <div class="row mt-3">
             <div class="d-flex flex-row-reverse">
@@ -32,13 +32,15 @@
             </div>
         </div>
         <div v-for="comment in comments" class="row forum-container mt-3">
-            <div class="forum-post col-2">
+            <!-- <div class="forum-post col-2">
                 <div class="resource-vote-container">
                 </div>
-            </div>
+            </div> -->
             <div class="forum-post col-10">
                 <div class="resource-header row">
-                    <div class="col-10"> <span>posted by </span>
+                    <div class="col-10">posted by:
+                        <span v-if="comment.author">{{comment.author}}</span>
+                        <span v-else>anonymous</span>
                         <hr>
                     </div>
                     <div class="resource-header-buttons col-2">
