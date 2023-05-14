@@ -70,3 +70,52 @@ a.nav-link {
         background-image: url('/images/hero-images/hero-006B.png');
     }
 }
+
+
+/* Comments Page */
+
+/* Reddit style skill resources forum */
+
+.forum-container {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.forum-post img {
+    max-width: 100%;
+    height: auto;
+}
+
+.resource-vote-container {
+    width: 32px;
+}
+
+.resource-vote-button {
+    width: 32px;
+}
+
+.userUpVote {
+    background-color: green;
+}
+
+.userDownVote {
+    background-color: red;
+}
+
+.resource-vote-count-span {
+    display: table;
+    margin: 0 auto;
+}
+
+.resource-header {
+    display: flex;
+}
+
+.resource-header-buttons {
+    margin-left: auto;
+}
+
+.forum-buttons {
+    width: 44px;
+}
