@@ -27,7 +27,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//	password: 'password',
+	password: 'password',
 	database: 'visual_kalsbeek'
 });
 
@@ -55,6 +55,47 @@ app.get('/game', (req, res) => {
 	res.render('game');
 })
 
+app.get('/comments', (req, res) => {
+	res.render('comments');
+})
+
+app.get('/api/comments', (req, res, next) => {
+	res.setHeader('Content-Type', 'application/json');
+	let sqlQuery = "SELECT * FROM comments;";
+	let query = conn.query(sqlQuery, (err, results) => {
+		try {
+			if (err) {
+				throw err;
+			}
+			res.json(results);
+		} catch (err) {
+			next(err)
+		}
+	});
+})
+
+app.get('/comments/add', (req, res) => {
+	res.render('add-comment');
+})
+
+app.post('/comments/add', (req, res) => {
+	let data = { content: req.body.editordata };
+
+	console.log(data)
+	// let sqlQuery = "INSERT INTO comments SET ?";
+	// let query = conn.query(sqlQuery, data, (err, results) => {
+	// 	try {
+	// 		if (err) {
+	// 			throw err;
+	// 		}
+	// 		else {
+	// 			res.end();
+	// 		}
+	// 	} catch (err) {
+	// 		next(err)
+	// 	}
+	// });
+})
 
 /* Parameters. ---------------------------------------------------*/
 /* GET parameters. */
