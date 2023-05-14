@@ -78,23 +78,29 @@ app.get('/comments/add', (req, res) => {
 	res.render('add-comment');
 })
 
-app.post('/comments/add', (req, res) => {
-	let data = { content: req.body.editordata };
+app.post('/api/comments/add', (req, res) => {
+	// Get current date.
+	var date_time = new Date();
+	let date = ("0" + date_time.getDate()).slice(-2);
+	let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+	let year = date_time.getFullYear();
+	var currentDate = year + "-" + month + "-" + date;
 
+	let data = { date: currentDate, content: req.body.editordata };
 	console.log(data)
-	// let sqlQuery = "INSERT INTO comments SET ?";
-	// let query = conn.query(sqlQuery, data, (err, results) => {
-	// 	try {
-	// 		if (err) {
-	// 			throw err;
-	// 		}
-	// 		else {
-	// 			res.end();
-	// 		}
-	// 	} catch (err) {
-	// 		next(err)
-	// 	}
-	// });
+	let sqlQuery = "INSERT INTO comments SET ?";
+	let query = conn.query(sqlQuery, data, (err, results) => {
+		try {
+			if (err) {
+				throw err;
+			}
+			else {
+				res.end();
+			}
+		} catch (err) {
+			next(err)
+		}
+	});
 })
 
 /* Parameters. ---------------------------------------------------*/
