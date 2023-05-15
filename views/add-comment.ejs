@@ -21,12 +21,14 @@
 <body>
     <div class="container mt-3">
         <h1>Add Comment</h1>
-        <div class="row">
-            <div class="mb-3">
-                <textarea id="summernote" name="editordata"></textarea>
-            </div>
-            <button class="btn btn-dark" onclick="Submit()">Submit</button>
+        <input id="authorName" type="text" class="form-control" placeholder="name (optional)" aria-label="Username"
+            aria-describedby="name" style="max-width: 400px;">
+
+        <div class="mb-3 mt-3">
+            <textarea id="summernote" name="editordata"></textarea>
         </div>
+        <button class="btn btn-dark" onclick="Submit()" style="width: 100px;">Submit</button>
+
     </div>
 
 
@@ -34,11 +36,15 @@
         // Save instructions.
         function Submit() {
             var url = "/api/comments/add";
+            var authorName = document.getElementById("authorName").value;
             var commentData = $('#summernote').summernote("code");
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ editordata: commentData })
+                body: JSON.stringify({
+                    authorName: authorName,
+                    editordata: commentData
+                })
             };
             fetch(url, requestOptions)
                 .then(() => {
@@ -49,7 +55,7 @@
 
         // Summernote settings.
         $('#summernote').summernote({
-            placeholder: '',
+            placeholder: 'comment',
             tabsize: 2,
             height: 120,
             toolbar: [
@@ -57,9 +63,7 @@
                 ['font', ['bold', 'underline', 'clear']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
+                ['view', ['fullscreen', 'help']]
             ]
         });
     </script>
