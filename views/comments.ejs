@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="app" class="container">
+    <div id="app" class="container mb-5">
         <h2>Comments</h2>
         <div class="row mt-3">
             <div class="d-flex flex-row-reverse">
@@ -36,15 +36,16 @@
                 <div class="resource-vote-container">
                 </div>
             </div> -->
-            <div class="forum-post col-10">
+            <div class="forum-post">
                 <div class="resource-header row">
-                    <div class="col-10">posted by:
+                    <div class="col-8">posted by:
                         <span v-if="comment.author">{{comment.author}}</span>
                         <span v-else>anonymous</span>
-                        <hr>
                     </div>
-                    <div class="resource-header-buttons col-2">
+                    <div class="resource-header-buttons col-4 text-end">
+                        {{comment.date}}
                     </div>
+                    <hr>
                 </div>
                 <div v-html="comment.content">
                 </div>
