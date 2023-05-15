@@ -67,6 +67,13 @@ app.get('/api/comments', (req, res, next) => {
 			if (err) {
 				throw err;
 			}
+			// Remove time from date time.
+			for (let i = 0; i < results.length; i++) {
+				var dateTime = results[i].date.toString();
+				var date = dateTime.substr(4, 11);
+				results[i].date = date;
+			}
+
 			res.json(results);
 		} catch (err) {
 			next(err)
