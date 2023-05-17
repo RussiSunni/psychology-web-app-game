@@ -34,8 +34,16 @@
         <div v-for="comment in comments" class="row forum-container mt-3">
             <!-- <div class="forum-post col-2">
                 <div class="resource-vote-container">
+                    <div class="resource-vote-container">
+                        <button :class="{ userUpVote: comment.userUpVote }" class="resource-vote-button"
+                            type="button"><img src="/icons/arrow-up-solid.svg"></button>
+                        <span class="resource-vote-count-span">{{ comment.voteCount }}</span>
+                        <button :class="{ userDownVote: comment.userDownVote }" class="resource-vote-button"
+                            type="button"><img src="/icons/arrow-down-solid.svg"></button>
+                    </div>
                 </div>
             </div> -->
+            <!-- <div class="forum-post col-10"> -->
             <div class="forum-post">
                 <div class="resource-header row">
                     <div class="col-8">posted by:
