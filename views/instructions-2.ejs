@@ -4,56 +4,57 @@
 <%- include('partials/head'); %>
 
     <body>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a id="edit-button" class="btn btn-info" role="button" href="/instructions-2/edit"
-                                style="display:none">Edit</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="btn btn-outline-success" role="button" href="/instructions-3">Next</a>
-                        </li>
-                    </ul>
+        <%- include('partials/navbar'); %>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a id="edit-button" class="btn btn-info" role="button" href="/instructions-2/edit"
+                                    style="display:none">Edit</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="btn btn-outline-success" role="button" href="/instructions-3">Next</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            </nav>
+            <div class="container">
+                <h1>Right Task</h1>
+                <div id="instructions"></div>
             </div>
-        </nav>
-        <div class="container">
-            <h1>Right Task</h1>
-            <div id="instructions"></div>
-        </div>
 
-        <nav class="navbar fixed-bottom bg-light">
-            <input id="edit-code" type="text" class="form-control" placeholder="code" aria-label="Code"
-                style="width: 100px">
-        </nav>
-        <script>
-            // Show the edit button, if code is correct.
-            document.getElementById('edit-code').addEventListener("input", function (e) {
-                if (this.value == "1967") {
-                    document.getElementById('edit-button').style.display = "block";
-                }
+            <nav class="navbar fixed-bottom bg-light">
+                <input id="edit-code" type="text" class="form-control" placeholder="code" aria-label="Code"
+                    style="width: 100px">
+            </nav>
+            <script>
+                // Show the edit button, if code is correct.
+                document.getElementById('edit-code').addEventListener("input", function (e) {
+                    if (this.value == "1967") {
+                        document.getElementById('edit-button').style.display = "block";
+                    }
 
-                // Save to browser storage for use in next step.
-                localStorage.setItem("code", this.value);
-            });
-
-            // Load the instructions.
-            fetch('/instructions-2/show')
-                .then(function (response) {
-                    return response.json();
-                }).then(function (data) {
-                    document.getElementById("instructions").innerHTML = data.right_task;
+                    // Save to browser storage for use in next step.
+                    localStorage.setItem("code", this.value);
                 });
-        </script>
+
+                // Load the instructions.
+                fetch('/instructions-2/show')
+                    .then(function (response) {
+                        return response.json();
+                    }).then(function (data) {
+                        document.getElementById("instructions").innerHTML = data.right_task;
+                    });
+            </script>
     </body>
 
 </html>
