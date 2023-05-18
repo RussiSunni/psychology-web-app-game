@@ -23,16 +23,16 @@
 </head>
 
 <body>
-    <div id="app" class="container mb-5">
-        <h2 class="mt-3">Comments</h2>
-        <div class="row mt-3">
-            <div class="d-flex flex-row-reverse">
-                <a href="/comments/add/" class="btn btn-outline-success" role="button">Add
-                    comment</a>
+    <%- include('partials/navbar'); %>
+        <div id="app" class="container mb-5">
+            <div class="row mt-3">
+                <div class="d-flex flex-row-reverse">
+                    <a href="/comments/add/" class="btn btn-outline-success" role="button">Add
+                        comment</a>
+                </div>
             </div>
-        </div>
-        <div v-for="comment in comments" class="row forum-container mt-3">
-            <!-- <div class="forum-post col-2">
+            <div v-for="comment in comments" class="row forum-container mt-3">
+                <!-- <div class="forum-post col-2">
                 <div class="resource-vote-container">
                     <div class="resource-vote-container">
                         <button :class="{ userUpVote: comment.userUpVote }" class="resource-vote-button"
@@ -43,47 +43,47 @@
                     </div>
                 </div>
             </div> -->
-            <!-- <div class="forum-post col-10"> -->
-            <div class="forum-post">
-                <div class="resource-header row">
-                    <div class="col-8">posted by:
-                        <span v-if="comment.author">{{comment.author}}</span>
-                        <span v-else>anonymous</span>
+                <!-- <div class="forum-post col-10"> -->
+                <div class="forum-post">
+                    <div class="resource-header row">
+                        <div class="col-8">posted by:
+                            <span v-if="comment.author">{{comment.author}}</span>
+                            <span v-else>anonymous</span>
+                        </div>
+                        <div class="resource-header-buttons col-4 text-end">
+                            {{comment.date}}
+                        </div>
+                        <hr>
                     </div>
-                    <div class="resource-header-buttons col-4 text-end">
-                        {{comment.date}}
+                    <div v-html="comment.content">
                     </div>
-                    <hr>
-                </div>
-                <div v-html="comment.content">
                 </div>
             </div>
+            <p>&nbsp;</p>
         </div>
-        <p>&nbsp;</p>
-    </div>
 
-    <script>
-        const { createApp } = Vue
-        createApp({
-            data() {
-                return {
-                    comments: [],
-                }
-            },
-            // Fetch the comments from the API.
-            async created() {
-                this.comments = await
-                    fetch("/api/comments")
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (data) {
-                            return data;
-                        });
-            },
-            methods: {}
-        }).mount('#app')
-    </script>
+        <script>
+            const { createApp } = Vue
+            createApp({
+                data() {
+                    return {
+                        comments: [],
+                    }
+                },
+                // Fetch the comments from the API.
+                async created() {
+                    this.comments = await
+                        fetch("/api/comments")
+                            .then(function (response) {
+                                return response.json();
+                            })
+                            .then(function (data) {
+                                return data;
+                            });
+                },
+                methods: {}
+            }).mount('#app')
+        </script>
 </body>
 
 </html>

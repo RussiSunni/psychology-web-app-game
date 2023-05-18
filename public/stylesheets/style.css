@@ -15,12 +15,27 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    height: 100%;
+    height: calc(100% - 64px);
 }
 
+/* Navbar */
 a.nav-link {
-    color: black;
+    /* color: black; */
+    color: white;
 }
+
+a.nav-link:hover,
+a.nav-link:active {
+    color: #dc3545;
+}
+
+.active {
+    color: #dc3545 !important;
+}
+
+
+
+/* Home page */
 
 .banner {
     background-color: rgba(0, 0, 0, 0.8);
