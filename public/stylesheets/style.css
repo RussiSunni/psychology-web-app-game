@@ -33,6 +33,10 @@ a.nav-link:active {
     color: #dc3545 !important;
 }
 
+.navbar-background {
+    background-color: black;
+}
+
 
 
 /* Home page */
