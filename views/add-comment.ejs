@@ -37,12 +37,20 @@
         function Submit() {
             var url = "/api/comments/add";
             var authorName = document.getElementById("authorName").value;
+            // Get current date.
+            var date_time = new Date();
+            let date = ("0" + date_time.getDate()).slice(-2);
+            let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+            let year = date_time.getFullYear();
+            var currentDate = year + "-" + month + "-" + date;
+            // Get comment.
             var commentData = $('#summernote').summernote("code");
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     authorName: authorName,
+                    date: currentDate,
                     editordata: commentData
                 })
             };

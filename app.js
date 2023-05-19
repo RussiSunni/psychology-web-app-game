@@ -86,14 +86,7 @@ app.get('/comments/add', (req, res) => {
 })
 
 app.post('/api/comments/add', (req, res) => {
-	// Get current date.
-	var date_time = new Date();
-	let date = ("0" + date_time.getDate()).slice(-2);
-	let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-	let year = date_time.getFullYear();
-	var currentDate = year + "-" + month + "-" + date;
-
-	let data = { author: req.body.authorName, date: currentDate, content: req.body.editordata };
+	let data = { author: req.body.authorName, date: req.body.date, content: req.body.editordata };
 	let sqlQuery = "INSERT INTO comments SET ?";
 	let query = conn.query(sqlQuery, data, (err, results) => {
 		try {
