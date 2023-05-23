@@ -55,6 +55,8 @@ app.get('/game', (req, res) => {
 	res.render('game');
 })
 
+
+/* Comments. ---------------------------------------------------*/
 app.get('/comments', (req, res) => {
 	res.render('comments');
 })
@@ -101,6 +103,24 @@ app.post('/api/comments/add', (req, res) => {
 		}
 	});
 })
+
+app.put('/api/comments/votes/:id/edit', (req, res, next) => {
+	let sqlQuery = `
+		UPDATE visual_kalsbeek.comments 
+        SET votes = ` + req.body.votes + `
+		WHERE id = ` + req.params.id + `;       
+        `
+	let query = conn.query(sqlQuery, (err, results) => {
+		try {
+			if (err) {
+				throw err;
+			}
+			res.end();
+		} catch (err) {
+			next(err)
+		}
+	});
+});
 
 /* Parameters. ---------------------------------------------------*/
 /* GET parameters. */

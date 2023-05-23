@@ -31,29 +31,30 @@
                         comment</a>
                 </div>
             </div>
-            <div v-for="comment in comments" class="row comment-container mt-3">
+            <div v-for="orderedComment in orderedComments" class="row comment-container mt-3">
                 <div class="col-2">
                     <div class="comment-vote-container">
                         <button class="comment-vote-button" type="button"
-                            @click="voteUp(comment.id, comment.votes)"><img src="/icons/arrow-up-solid.svg"></button>
-                        <span class="resource-vote-count-span">{{ comment.votes }}</span>
+                            @click="voteUp(orderedComment.id, orderedComment.votes)"><img
+                                src="/icons/arrow-up-solid.svg"></button>
+                        <span class="resource-vote-count-span">{{ orderedComment.votes }}</span>
                         <button class="comment-vote-button" type="button"
-                            @click="voteDown(comment.id, comment.votes)"><img
+                            @click="voteDown(orderedComment.id, orderedComment.votes)"><img
                                 src="/icons/arrow-down-solid.svg"></button>
                     </div>
                 </div>
                 <div class="col-10">
                     <div class="row">
                         <div class="col-8">posted by:
-                            <span v-if="comment.author">{{comment.author}}</span>
+                            <span v-if="orderedComment.author">{{orderedComment.author}}</span>
                             <span v-else>anonymous</span>
                         </div>
                         <div class="col-4 text-end">
-                            {{comment.date}}
+                            {{orderedComment.date}}
                         </div>
                         <hr>
                     </div>
-                    <div v-html="comment.content">
+                    <div v-html="orderedComment.content">
                     </div>
                 </div>
             </div>
@@ -70,6 +71,13 @@
                     // Fetch the comments from the API.
                     async created() {
                         this.getComments();
+                    },
+                    computed: {
+                        orderedComments() {
+                            // Ordering by vote.
+                            var orderedComments = this.comments.sort(({ votes: a }, { votes: b }) => b - a);
+                            return orderedComments;
+                        }
                     },
                     methods: {
                         async getComments() {
