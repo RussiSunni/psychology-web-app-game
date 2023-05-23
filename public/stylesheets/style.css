@@ -94,26 +94,22 @@ a.nav-link:active {
 
 
 /* Comments Page */
-
-/* Reddit style skill resources forum */
-
-.forum-container {
+.comment-container {
     border: 1px solid grey;
     border-radius: 5px;
     padding: 5px;
 }
 
-.forum-post img {
-    max-width: 100%;
-    height: auto;
-}
-
-.resource-vote-container {
+.comment-vote-container {
     width: 32px;
 }
 
-.resource-vote-button {
+.comment-vote-button {
     width: 32px;
+}
+
+.comment-vote-button:active {
+    background-color: grey;
 }
 
 .userUpVote {
@@ -127,16 +123,4 @@ a.nav-link:active {
 .resource-vote-count-span {
     display: table;
     margin: 0 auto;
-}
-
-.resource-header {
-    display: flex;
-}
-
-.resource-header-buttons {
-    margin-left: auto;
-}
-
-.forum-buttons {
-    width: 44px;
 }
