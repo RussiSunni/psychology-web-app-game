@@ -110,6 +110,7 @@ app.put('/api/comments/votes/:id/edit', (req, res, next) => {
         SET votes = ` + req.body.votes + `
 		WHERE id = ` + req.params.id + `;       
         `
+
 	let query = conn.query(sqlQuery, (err, results) => {
 		try {
 			if (err) {
