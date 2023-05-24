@@ -106,10 +106,11 @@ app.post('/api/comments/add', (req, res) => {
 
 app.put('/api/comments/votes/:id/edit', (req, res, next) => {
 	let sqlQuery = `
-		UPDATE visual_kalsbeek.comments 
+		UPDATE comments  
         SET votes = ` + req.body.votes + `
 		WHERE id = ` + req.params.id + `;       
         `
+
 	let query = conn.query(sqlQuery, (err, results) => {
 		try {
 			if (err) {
