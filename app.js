@@ -27,7 +27,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//password: 'password',
+	password: 'password',
 	database: 'visible_bottleneck'
 });
 
@@ -106,7 +106,7 @@ app.post('/api/comments/add', (req, res) => {
 
 app.put('/api/comments/votes/:id/edit', (req, res, next) => {
 	let sqlQuery = `
-		UPDATE visual_kalsbeek.comments 
+		UPDATE comments 
         SET votes = ` + req.body.votes + `
 		WHERE id = ` + req.params.id + `;       
         `
