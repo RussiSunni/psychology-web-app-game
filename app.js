@@ -27,7 +27,7 @@ const conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'C0gn1t1v3Psych0l0gy',
-	//password: 'password',
+	password: 'password',
 	database: 'visible_bottleneck'
 });
 
@@ -286,6 +286,39 @@ app.put('/instructions-3/edit', function (req, res, next) {
 		}
 	});
 });
+
+
+// Visitor counter.
+// Record unique visitors by IP address.
+app.post('/api/visitor-counter', (req, res, next) => {
+	// Check if the client's IP address is in the database already.
+	let sqlQuery1 = "SELECT * FROM visitor_counter WHERE ip_address = '" + req.body.clientIPAddress.toString() + "';";
+	let query = conn.query(sqlQuery1, (err, results) => {
+		try {
+			if (err) {
+				throw err;
+			}
+			// If not, record it there.
+			if (results.length == 0) {
+				let sqlQuery2 = "INSERT INTO visitor_counter (ip_address) VALUES ('" + req.body.clientIPAddress.toString() + "')";
+				let query2 = conn.query(sqlQuery2, (err, results) => {
+					try {
+						if (err) {
+							throw err;
+						}
+						res.end()
+
+					} catch (err) {
+						next(err)
+					}
+				});
+			}
+		} catch (err) {
+			next(err)
+		}
+	});
+
+})
 
 // Save game data.
 // app.post('/saveGameData', (req, res) => {
