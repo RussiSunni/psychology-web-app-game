@@ -330,18 +330,8 @@ app.put('/instructions-3/edit', function (req, res, next) {
 // // Show visitor count. 
 app.get('/api/visitor-counter', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
-	let sqlQuery = "SELECT COUNT (*) FROM visitor_counter;";
-	let query = conn.query(sqlQuery, (err, results) => {
-		try {
-			if (err) {
-				throw err;
-			}
-			console.log(counters)
-			res.json(counters);
-		} catch (err) {
-			next(err)
-		}
-	});
+	console.log(counters)
+	res.json(counters);
 });
 
 // Save game data.
