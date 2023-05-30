@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <%- include('partials/head'); %>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KCDB571HMJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KCDB571HMJ');
+    </script>
 
     <body>
         <%- include('partials/navbar'); %>
@@ -44,6 +53,15 @@
                 //     .then(function (res) {
                 //         console.log(res)
                 //     })
+
+
+                // fetch('/api/visitor-counter')
+                //     .then(res => res.json())
+                //     .then(function (res) {
+                //         console.log(res)
+                //     })
+
+
             </script>
 
     </body>
