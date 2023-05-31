@@ -14,6 +14,7 @@
     <body>
         <%- include('partials/navbar'); %>
             <div class="main">
+                <span class="float-end visitor-counter"><span id="visitor-counter"></span></span>
                 <div class="text-center banner fixed-bottom mx-auto"
                     style="margin-bottom: 0rem!important; padding-bottom: 1rem;">
                     <h1 class="display-1 text-danger">
@@ -34,8 +35,8 @@
                 // Get client's IP address.
                 $.getJSON('https://api.ipify.org?format=jsonp&callback=?', function (data) {
 
-                    console.log(JSON.stringify(data, null, 2));
-                    console.log(data.ip)
+                    // console.log(JSON.stringify(data, null, 2));
+                    // console.log(data.ip)
 
                     const requestOptions = {
                         method: "POST",
@@ -46,21 +47,17 @@
                     };
                     var url = '/api/visitor-counter'
                     fetch(url, requestOptions)
+
                 });
-
-                // fetch('https://api.ipify.org')
-                //     .then(res => res.json())
-                //     .then(function (res) {
-                //         console.log(res)
-                //     })
-
 
                 fetch('/api/visitor-counter')
                     .then(res => res.json())
                     .then(function (res) {
-                        console.log(res)
-                    })
+                        // console.log(res.count)
+                        const visitorCounter = document.getElementById("visitor-counter");
+                        visitorCounter.innerHTML = res.count;
 
+                    })
 
             </script>
 
