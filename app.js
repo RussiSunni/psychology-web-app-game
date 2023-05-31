@@ -4,21 +4,11 @@ var path = require('path');
 var logger = require('morgan');
 const mysql = require('mysql');
 
-// For visitor counter.
-const expressSession = require('express-session');
-const expressVisitorCounter = require('express-visitor-counter');
-const counters = {};
-
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-// For visitor counter.
-app.enable('trust proxy');
-app.use(expressSession({ secret: 'secret', resave: false, saveUninitialized: true }));
-app.use(expressVisitorCounter({ hook: counterId => counters[counterId] = (counters[counterId] || 0) + 1 }));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -298,40 +288,50 @@ app.put('/instructions-3/edit', function (req, res, next) {
 
 // Visitor counter.
 // Record unique visitors by IP address.
-// app.post('/api/visitor-counter', (req, res, next) => {
-// 	// Check if the client's IP address is in the database already.
-// 	let sqlQuery1 = "SELECT * FROM visitor_counter WHERE ip_address = '" + req.body.clientIPAddress.toString() + "';";
-// 	let query = conn.query(sqlQuery1, (err, results) => {
-// 		try {
-// 			if (err) {
-// 				throw err;
-// 			}
-// 			// If not, record it there.
-// 			if (results.length == 0) {
-// 				let sqlQuery2 = "INSERT INTO visitor_counter (ip_address) VALUES ('" + req.body.clientIPAddress.toString() + "')";
-// 				let query2 = conn.query(sqlQuery2, (err, results) => {
-// 					try {
-// 						if (err) {
-// 							throw err;
-// 						}
-// 						res.end()
+app.post('/api/visitor-counter', (req, res, next) => {
+	// Check if the client's IP address is in the database already.
+	let sqlQuery1 = "SELECT * FROM visitor_counter WHERE ip_address = '" + req.body.clientIPAddress.toString() + "';";
+	let query = conn.query(sqlQuery1, (err, results) => {
+		try {
+			if (err) {
+				throw err;
+			}
+			// If not, record it there.
+			if (results.length == 0) {
+				let sqlQuery2 = "INSERT INTO visitor_counter (ip_address) VALUES ('" + req.body.clientIPAddress.toString() + "')";
+				let query2 = conn.query(sqlQuery2, (err, results) => {
+					try {
+						if (err) {
+							throw err;
+						}
+						res.end()
 
-// 					} catch (err) {
-// 						next(err)
-// 					}
-// 				});
-// 			}
-// 		} catch (err) {
-// 			next(err)
-// 		}
-// 	});
-// })
+					} catch (err) {
+						next(err)
+					}
+				});
+			}
+		} catch (err) {
+			next(err)
+		}
+	});
+})
 
 // // Show visitor count. 
 app.get('/api/visitor-counter', function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
-	console.log(counters)
-	res.json(counters);
+	let sqlQuery = "SELECT COUNT(*) AS count FROM visible_bottleneck.visitor_counter";
+	let query = conn.query(sqlQuery, (err, results) => {
+		try {
+			if (err) {
+				throw err;
+			}
+			console.log(results[0])
+			res.json(results[0]);
+		} catch (err) {
+			next(err)
+		}
+	});
 });
 
 // Save game data.
