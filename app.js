@@ -104,7 +104,7 @@ app.post('/api/comments/add', (req, res) => {
 
 app.put('/api/comments/votes/:id/edit', (req, res, next) => {
 	let sqlQuery = `
-		UPDATE comments 
+		UPDATE comments  
         SET votes = ` + req.body.votes + `
 		WHERE id = ` + req.params.id + `;       
         `
