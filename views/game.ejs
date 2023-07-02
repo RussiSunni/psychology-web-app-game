@@ -34,8 +34,9 @@
       </ul>
       <p>&nbsp;</p>
       <!-- <p><a class="link-dark" href="/instructions-1"><em>Read full instructions</em></a></p>
-      <p><a class="link-dark" href="/faq"><em>What is the point of this game?</em></a></p>
-      <p><a class="link-dark" href="/comments"><em>Leave a comment</em></a></p> -->
+      <p><a class="link-dark" href="/faq"><em>What is the point of this game?</em></a></p> -->
+      <!-- Button trigger modal -->
+      <p><a class="link-dark" data-bs-toggle="modal" href="#exampleModalToggle"><em>Instructions</em></a></p>
       <p><a class="link-dark" href="/"><em>Return to Home page</em></a></p>
     </div>
     </div>
@@ -54,6 +55,76 @@
     <input style="display: none;" type="number" min="0" step="1" id="r_bar_delay_amount" class="param-inputs" />
     <input style="display: none;" placeholder="code" id="admin_code" />
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+      tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Instructions 1</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>You are going to start with what we call the “Left Task”.</p>
+            <p>Here, you will be responding with your left hand. There are three buttons on the keyboard you can press
+              when you hear a sound. If you hear a high-pitched voice say the word hi you will press the W key. If you
+              hear a medium pitch sound say the word medium you will press the S key. And if you hear a low pitch sounds
+              say the word low you will press the X key.</p>
+            <p>Please keep the index, middle and ring fingers of your left hand rested on the three keys.</p>
+            <p>Your goal is to respond at a rate that keeps the blue bar on the left side of the screen as low as
+              possible. It's always Rising unless you respond accurately and promptly enough. Your goal is to drive the
+              bar as low as possible.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-success" data-bs-target="#exampleModalToggle2"
+              data-bs-toggle="modal">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+      tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Instructions 2</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Next you are going to try what we call the “Right Task”.</p>
+            <p>Here, you will be responding with your right hand. There are three buttons on the keyboard you can press
+              when you see a letter flash on the screen. If you see an A you will press the comma key. If you see a B
+              you will press the period key. And if you see a C you will press the slash key.</p>
+            <p>Please keep the index, middle and ring fingers of your right hand rested on the three keys.</p>
+            <p>Your goal is to respond at a rate that keeps the red bar on the right side of the screen as low as
+              possible. It's always Rising unless you respond accurately and promptly enough. Your goal is to drive the
+              bar as low as possible.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-success" data-bs-target="#exampleModalToggle3"
+              data-bs-toggle="modal">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+      tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Instructions 3</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Finally you are going to try the “Both Task”. Here you have both the Left Task and the Right Task going
+              at the same time. Your job is to keep both bars as low as possible.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Phaser -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"
       integrity="sha512-kg6fSrg6FkD9Ua02PzuA289KatVkTp6HdiFrSKwnz1bKBeKe5JG54rNeYZeghYO/I4ka49rb9H/9Ezcq9Se3iQ=="
