@@ -21,7 +21,8 @@ body {
 /* Navbar */
 a.nav-link {
     /* color: black; */
-    color: white;
+    color: white !important;
+    display: block;
 }
 
 a.nav-link:hover,
