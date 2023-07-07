@@ -74,19 +74,19 @@ class ParametersScene extends Phaser.Scene {
 
         // Save button
         var roundedRect1 = this.add.graphics();
-        roundedRect1.fillStyle(0x70ad47, 1);
+        roundedRect1.fillStyle(0x198754, 1);
         roundedRect1.fillRoundedRect(0, 0, 200, 60, 8);
         var text1 = this.add.text(20, 15, "Save", { fontFamily: "Arial", fontSize: "30px" });
         this.container1 = this.add.container(20, 400, [roundedRect1, text1]);
         this.container1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
         this.container1.on('pointerover', function () {
             roundedRect1.clear();
-            roundedRect1.fillStyle(0x5d913a, 1);
+            roundedRect1.fillStyle(0x157347, 1);
             roundedRect1.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container1.on('pointerout', function () {
             roundedRect1.clear();
-            roundedRect1.fillStyle(0x70ad47, 1);
+            roundedRect1.fillStyle(0x198754, 1);
             roundedRect1.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container1.on('pointerdown', function () {
@@ -96,19 +96,19 @@ class ParametersScene extends Phaser.Scene {
 
         // Menu button
         var roundedRect2 = this.add.graphics();
-        roundedRect2.fillStyle(0x70ad47, 1);
+        roundedRect2.fillStyle(0x198754, 1);
         roundedRect2.fillRoundedRect(0, 0, 200, 60, 8);
         var text2 = this.add.text(20, 15, "Return", { fontFamily: "Arial", fontSize: "30px" });
         this.container2 = this.add.container(20, 500, [roundedRect2, text2]);
         this.container2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 200, 100), Phaser.Geom.Rectangle.Contains);
         this.container2.on('pointerover', function () {
             roundedRect2.clear();
-            roundedRect2.fillStyle(0x5d913a, 1);
+            roundedRect2.fillStyle(0x157347, 1);
             roundedRect2.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container2.on('pointerout', function () {
             roundedRect2.clear();
-            roundedRect2.fillStyle(0x70ad47, 1);
+            roundedRect2.fillStyle(0x198754, 1);
             roundedRect2.fillRoundedRect(0, 0, 200, 60, 8);
         }, this);
         this.container2.on('pointerdown', function () {

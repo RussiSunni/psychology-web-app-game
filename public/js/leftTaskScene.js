@@ -79,7 +79,7 @@ class LeftTaskScene extends Phaser.Scene {
 
         // Play Again Button --------------------------------
         var roundedRect1 = this.add.graphics();
-        roundedRect1.fillStyle(0x70ad47, 1);
+        roundedRect1.fillStyle(0x198754, 1);
         roundedRect1.fillRoundedRect(0, 0, 180, 60, 8);
         var text1 = this.add.text(20, 15, "Play Again", { fontFamily: "Arial", fontSize: "30px" });
         this.container1 = this.add.container(300, 500, [roundedRect1, text1]);
@@ -88,12 +88,12 @@ class LeftTaskScene extends Phaser.Scene {
         this.container1.disableInteractive()
         this.container1.on('pointerover', function () {
             roundedRect1.clear();
-            roundedRect1.fillStyle(0x5d913a, 1);
+            roundedRect1.fillStyle(0x157347, 1);
             roundedRect1.fillRoundedRect(0, 0, 180, 60, 8);
         }, this);
         this.container1.on('pointerout', function () {
             roundedRect1.clear();
-            roundedRect1.fillStyle(0x70ad47, 1);
+            roundedRect1.fillStyle(0x198754, 1);
             roundedRect1.fillRoundedRect(0, 0, 180, 60, 8);
         }, this);
         this.container1.on('pointerdown', function () {
