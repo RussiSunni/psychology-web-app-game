@@ -38,6 +38,10 @@ a.nav-link:active {
     background-color: black;
 }
 
+a.dropdown-item.active {
+    background: inherit;
+}
+
 
 
 /* Home page */
