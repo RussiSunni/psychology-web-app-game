@@ -49,6 +49,10 @@ app.get('/', (req, res) => {
 	res.render('index');
 })
 
+app.get('/about', function (req, res, next) {
+	res.render('about');
+});
+
 app.get('/game', (req, res) => {
 	res.render('game');
 })
