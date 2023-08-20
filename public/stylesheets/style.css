@@ -27,11 +27,11 @@ a.nav-link {
 
 a.nav-link:hover,
 a.nav-link:active {
-    color: #dc3545 !important;
+    color: #ffc107 !important;
 }
 
 .active {
-    color: #dc3545 !important;
+    color: #ffc107 !important;
 }
 
 .navbar-background {
@@ -61,8 +61,8 @@ a.dropdown-item.active {
 
 .play-game-btn:hover,
 .play-game-btn:active {
-    color: #ffc107 !important;
-    border-color: #ffc107 !important;
+    color: #198754 !important;
+    /* border-color: #DC3545 !important; */
 }
 
 
