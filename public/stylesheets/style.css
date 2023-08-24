@@ -34,6 +34,15 @@ a.nav-link:active {
     color: #ffc107 !important;
 }
 
+.dropdown-menu {
+    background-color: black;
+    color: white;
+}
+
+.dropdown-item {
+    color: white;
+}
+
 .navbar-background {
     background-color: black;
 }
