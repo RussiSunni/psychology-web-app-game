@@ -11,7 +11,7 @@ body {
 
 .main {
     background-color: white;
-    background-image: url('/images/hero-images/hero-005.png');
+    background-image: url('/images/hero-images/hero-003.jpg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -113,7 +113,7 @@ a.dropdown-item.active {
 @media only screen and (max-width: 821px) {
 
     .main {
-        background-image: url('/images/hero-images/hero-006B.png');
+        background-image: url('/images/hero-images/hero-004.jpg');
     }
 }
 
